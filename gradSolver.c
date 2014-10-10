@@ -1,6 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
+#include <sys/time.h>
+
+/**
+ * @file gradSolver.c
+ * @brief TODO
+ * @author Aryane Ast dos Santos
+ * @author Kevin Katzer
+ */
 
 /**
  * @brief Calcula norma do resíduo de um sistema na forma Ax = b
@@ -46,42 +54,42 @@ double timestamp(void){
  */
 int generateRandomPositiveDefiniteLinearSystem(unsigned int N, double *A, double *b)
 {
-  if ( !A || !b )
-    return (-1);
+    if ( !A || !b )
+        return (-1);
 
-  /* generate a randomly initialized matrix in row-major order */
-  double *ptr = A;
-  double *end = A + N*N;
+    /* generate a randomly initialized matrix in row-major order */
+    double *ptr = A;
+    double *end = A + N*N;
 
-  double invRandMax = 1.0/(double)RAND_MAX;
+    double invRandMax = 1.0/(double)RAND_MAX;
 
-  while( ptr != end ) {
-    *ptr++ = (double)rand() * invRandMax;
-  }
-
-  /* Now we want to make this matrix positive definite. Since all
-     values are positive and <1.0, we have to ensure it is symmetric
-     and diagonally dominant.
-
-     A = A + transpose(A)
-     A = A + I*N                        */
-  unsigned int i,j;
-  for (i=0; i<N; ++i)
-    for (j=i+1; j<N; ++j)
-    {
-      double aux = A[i*N+j];
-      A[i*N+j] += A[j*N+i];
-      A[j*N+i] += aux;
+    while( ptr != end ) {
+        *ptr++ = (double)rand() * invRandMax;
     }
 
-  for (i=0; i<N; ++i)
-    A[i*N+i] += A[i*N+i] + N;
+    /* Now we want to make this matrix positive definite. Since all
+       values are positive and <1.0, we have to ensure it is symmetric
+       and diagonally dominant.
 
-  /* create the vector of independent terms (b) */
-  for (i=0; i<N; ++i)
-    b[i] = (double)rand() * invRandMax;
+       A = A + transpose(A)
+       A = A + I*N                        */
+    unsigned int i,j;
+    for (i=0; i<N; ++i)
+        for (j=i+1; j<N; ++j)
+        {
+            double aux = A[i*N+j];
+            A[i*N+j] += A[j*N+i];
+            A[j*N+i] += aux;
+        }
 
-  return 0;
+    for (i=0; i<N; ++i)
+        A[i*N+i] += A[i*N+i] + N;
+
+    /* create the vector of independent terms (b) */
+    for (i=0; i<N; ++i)
+        b[i] = (double)rand() * invRandMax;
+
+    return 0;
 }
 
 
