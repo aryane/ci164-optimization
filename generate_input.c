@@ -24,7 +24,7 @@
  */
 void print_input_mat(FILE *fp_in, int n) {
     double *A=NULL, *b=NULL;
-    b = (double*) malloc(N*sizeof(double));
+    b = (double*) malloc(n*sizeof(double));
     generateRandomPositiveDefiniteLinearSystem(n, A, b);
 
     printf("%d\n", n);
@@ -40,11 +40,12 @@ void print_input_mat(FILE *fp_in, int n) {
 }
 
 int main(int argc, char **argv) {
-    /** Não testa quantidade de argumentos pois temos domínio da situação ;) */
-    if (argc > 1)
+    if (argc != 3)
+        exit(1);
+
     FILE *fp_in = fopen(argv[1], "w");
 
-    print_input_mat(fp_in, 10);
+    print_input_mat(fp_in, atoi(argv[2]));
 
     return 0;
 }
