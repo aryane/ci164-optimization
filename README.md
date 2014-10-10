@@ -1,4 +1,4 @@
 CI164-gradient
 ==============
 
-Primeiro Trabalho prático de ICC (CI164) - kk11|aas11
+Primeiro Trabalho prático de ICC (CI164) - kk11|aras10
