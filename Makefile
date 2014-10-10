@@ -2,7 +2,7 @@ CC = gcc
 CFLAGS = -Wall -lm
 
 all:
-	        $(CC) *.c -o gradSolver $(CFLAGS)
+	        $(CC) *.c -std=c99 -o gradSolver $(CFLAGS)
 
 clean:
 	        rm -rf gradSolver

@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <math.h>
 #include <sys/time.h>
+#include <string.h>
 
 /**
  * @file gradSolver.c
@@ -94,7 +95,23 @@ int generateRandomPositiveDefiniteLinearSystem(unsigned int N, double *A, double
 
 
 int main(int argc, char **argv) {
-    // Hello World! =D
+    
+    /* Leitura dos parâmetros de entrada */
+
+    for (int i=1; i<argc; i += 2){
+        if (argv[i][1] == 'i')
+            //Arquivo de Entrada = argv[i+1]//
+        else if (argv[i][1] == 'o')
+            //Arquivo de Saída = argv[i+1]//
+        else if (argv[i][1] == 'r')
+            //Dimensão do Sistema = argv[i+1]//
+        else if (argv[i][1] == 'k')
+            //Número Máximo de Iterações = argv[i+1]//
+        else if (argv[i][1] == 'e')
+            //Maior Erro Aceitável = argv[i+1]//
+        else 
+            //Parâmetro Inválido//
+    }
 
     return 0;
 }
