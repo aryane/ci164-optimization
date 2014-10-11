@@ -1,4 +1,5 @@
 #include <stdio.h>
+#include <string.h>
 #include "mat_utils.h"
 
 /**
@@ -19,31 +20,46 @@
  *  a_n1 a_n2 ... a_nn
  *  b1 b2 ... bn
  * @param n Dimensão da matriz.
- * @param *fp_in arquivo de teste já aberto para escrita. Servirá de entrada no
- * programa principal posteriormente.
+ * @param *stream stream teste para escrita.
  */
-void print_input_mat(FILE *fp_in, int n) {
-    double *A=NULL, *b=NULL;
-    b = (double*) malloc(n*sizeof(double));
-    generateRandomPositiveDefiniteLinearSystem(n, A, b);
+void print_input_mat(FILE *stream, int n) {
+    double *b = (double*) malloc(n*sizeof(double));
+    double *A = generateSquareRandomPositiveDefiniteMatrix(n);
 
-    printf("%d\n", n);
+    /** Gera valores randomicos para o vetor b */
+    double invRandMax = 1.0/(double)RAND_MAX;
+    memset((void*)b, (double)rand()*invRandMax, (size_t)n*sizeof(double));
+
+    fprintf(stream, "%d\n", n);
     for (int i=0; i<n; ++i) {
         for (int j=0; j<n; ++j) {
-            fprintf(fp_in, "%f ", A[i*n+j]);
+            fprintf(stream, "%f ", A[i*n+j]);
         }
-        fprintf(fp_in, "\n");
+        fprintf(stream, "\n");
     }
     for (int i=0; i<n; ++i) {
-        fprintf(fp_in, "%f ", b[i]);
+        fprintf(stream, "%f ", b[i]);
     }
 }
 
-int main(int argc, char **argv) {
-    if (argc != 3)
-        exit(1);
+void printHelp() {
+    printf("Uso: ");
+    printf("./generate_input [stream] [n]\n");
+    printf("onde stream é o arquivo onde será escrita a entrada de teste\n");
+    printf("(pode ser stdout) e n a dimensão da matriz gerada.\n");
+}
 
-    FILE *fp_in = fopen(argv[1], "w");
+int main(int argc, char **argv) {
+    if (argc != 3) {
+        printHelp();
+        exit(1);
+    }
+
+    FILE *fp_in;
+    if (!strcmp(argv[1], "stdout"))
+        fp_in = stdout;
+    else
+        fp_in = fopen(argv[1], "w");
 
     print_input_mat(fp_in, atoi(argv[2]));
 
