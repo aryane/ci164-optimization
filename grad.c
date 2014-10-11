@@ -1,7 +1,7 @@
-#include "grad_f.h"
+#include "grad.h"
 
 /**
- * @file grad_f.c
+ * @file grad.c
  * @brief Funções criadas para a resolução do trabalho
  * @author Aryane Ast dos Santos
  * @author Kevin Katzer

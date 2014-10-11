@@ -9,8 +9,8 @@
 #include "mat_utils.h"
 
 /**
- * @file grad_f.h
- * @brief Header do arquivo grad_f.c
+ * @file grad.h
+ * @brief Header do arquivo grad.c
  * @author Aryane Ast dos Santos
  * @author Kevin Katzer
  */

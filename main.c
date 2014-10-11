@@ -4,7 +4,7 @@
 #include <sys/time.h>
 #include <string.h>
 #include "mat_utils.h"
-#include "grad_f.h"
+#include "grad.h"
 
 /**
  * @file gradSolver.c
