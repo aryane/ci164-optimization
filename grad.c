@@ -37,13 +37,9 @@ double calcResidualNorm(double *A, double *b, double *x, int n) {
  * @brief Imprime os parâmetros possíveis em stdout
  */
 void helper() {
-    printf("\033[1mNOME\033[0m\n");
-    printf("\tgradSolver - Soluciona um Sistema Linear pelo Método do Gradiente\n");
-    printf("\033[1mSINOPSE\033[0m\n");
-    printf("\t./gradSolver [OPTION]...\n");
-    printf("\033[1mDESCRIÇÃO\033[0m\n");
-    printf("\tResolve um sistema linear a partir de uma matriz quadrada definida, positiva e simétrica.\n");
-    printf("\tParâmetros possíveis:\n");
+    printf("\033[1mUSO\033[0m\n");
+    printf("\t./gradSolver [OPÇÕES]\n");
+    printf("\033[1mOPÇÕES\033[0m\n");
     printf("\t\033[1m-i\033[0m\n");
     printf("\t\tArquivo de entrada do programa. Se não incluído, a matriz deve ser inserida via stdin.");
     printf("\tgradSolver -i [endereço do arquivo]\n");
