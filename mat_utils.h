@@ -15,5 +15,6 @@
 
 double timestamp(void);
 int generateRandomPositiveDefiniteLinearSystem(unsigned int N, double *A, double *b);
+double *generateSquareRandomPositiveDefiniteMatrix(unsigned int n);
 
 #endif

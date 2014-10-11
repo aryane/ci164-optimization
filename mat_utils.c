@@ -18,7 +18,7 @@ double timestamp(void){
 }
 
 /**
- * @brief Gera matrizes N*N da forma Ax = b positivas definidas.
+ * @brief Gera matriz A N*N positiva definida e vetor b, na forma Ax = b.
  * @param N Dimensão da matriz.
  * @param *A Matriz A.
  * @param *b Vetor b.
@@ -61,4 +61,48 @@ int generateRandomPositiveDefiniteLinearSystem(unsigned int N, double *A, double
         b[i] = (double)rand() * invRandMax;
 
     return 0;
+}
+
+/**
+ * @brief Gera matriz simétrica A de dimensão n positiva definida.
+ * @param n Dimensão da matriz.
+ * @return matriz.
+ */
+double *generateSquareRandomPositiveDefiniteMatrix(unsigned int n)
+{
+    double *mat = NULL;
+
+    /* return NULL if memory allocation fails */
+    if ( ! (mat = (double *) malloc(n*n*sizeof(double))) )
+        return (NULL);
+
+    /* generate a randomly initialized matrix in row-major order */
+    double *ptr = mat;
+    double *end = mat + n*n;
+
+    double invRandMax = 1.0/(double)RAND_MAX;
+
+    while( ptr != end ) {
+        *ptr++ = (double)rand() * invRandMax;
+    }
+
+    /* Now we want to make this matrix positive definite. Since all
+       values are positive and <1.0, we have to ensure it is symmetric
+       and diagonally dominant.
+
+       A = A + transpose(A)
+       A = A + I*n                        */
+    unsigned int i,j;
+    for (i=0; i<n; ++i)
+        for (j=i+1; j<n; ++j)
+        {
+            double aux = mat[i*n+j];
+            mat[i*n+j] += mat[j*n+i];
+            mat[j*n+i] += aux;
+        }
+
+    for (i=0; i<n; ++i)
+        mat[i*n+i] += mat[i*n+i] + n;
+
+    return (mat);
 }
