@@ -8,6 +8,25 @@
  */
 
 /**
+ * @brief Função principal do método de gradiente
+ * @param *A Matriz.
+ * @param *x Vetor solução.
+ * @param n Dimensão da matriz.
+ * @param e Erro máximo permitido.
+ * @param it Número máximo de iterações.
+ */
+
+void gradSolver(double *A, double *x, int n, double e, int it){
+    double *r = (double *) malloc(n*sizeof(double));
+    residue(A, b, x, r, n);
+    for (int i = 0; (residualNorm(r,n) >= e) && (i <= it); ++i){
+        calcGrad(A, x, r, n);
+        residue(A, b, x, r, n);
+        ++i;
+    }
+}
+
+/**
  * @brief Iterações do método de gradiente
  * @param *A Matriz.
  * @param *x Vetor solução.
