@@ -33,6 +33,24 @@ double calcResidualNorm(double *A, double *b, double *x, int n) {
     return norm;
 }
 
+double residualNorm(double *r, int n) {
+    double norm, sum = 0.0;
+    for (int i=0; i<n; ++i)
+        sum += r[i] * r[i];
+    norm = sqrt(sum);
+
+    return norm;
+}
+
+void residue(double *A, double *b, double *x, double *r, int n) {
+    for (int i=0; i<n; ++i) {
+        r[i] = b[i];
+        for (int j=0; i<n; ++i) {
+            r[i] -= A[i*n+j]*x[j];
+        }
+    }
+}
+
 /**
  * @brief Imprime os parâmetros possíveis em stdout
  */

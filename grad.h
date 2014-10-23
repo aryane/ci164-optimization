@@ -16,6 +16,8 @@
  */
 
 double calcResidualNorm(double *A, double *b, double *x, int n);
+double residualNorm(double *r, int n);
+void residue(double *A, double *b, double *x, double *r, int n);
 void helper();
 
 #endif
