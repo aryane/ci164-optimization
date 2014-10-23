@@ -8,6 +8,22 @@
  */
 
 /**
+ * @brief Iterações do método de gradiente
+ * @param *A Matriz.
+ * @param *x Vetor solução.
+ * @param *r Vetor de resíduos.
+ * @param n Dimensão da matriz.
+ */
+
+void calcGrad(double *A, double *x, double *r, int n){
+    double iaux, *aux = (double *)malloc(n*sizeof(double));
+    aux = multMat(A,r);
+    iaux = multMat(r,r)/multMat(r,aux);
+    for (int i = 0; i < n; ++i)
+        x[i] = x[i] + iaux * r[i];
+}
+
+/**
  * @brief Calcula norma do resíduo de um sistema na forma Ax = b
  * @param *A Matriz.
  * @param *b vetor b.
