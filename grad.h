@@ -16,7 +16,6 @@
  */
 
 void calcGrad(double *A, double *x, double *r, int n);
-double calcResidualNorm(double *A, double *b, double *x, int n);
 double residualNorm(double *r, int n);
 void residue(double *A, double *b, double *x, double *r, int n);
 double multVet(double *v, double *r, int n);

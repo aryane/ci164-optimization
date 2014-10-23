@@ -24,31 +24,10 @@ void calcGrad(double *A, double *x, double *r, int n){
 }
 
 /**
- * @brief Calcula norma do resíduo de um sistema na forma Ax = b
- * @param *A Matriz.
- * @param *b vetor b.
- * @param *x Vetor solução.
- * @param n Dimensão da matriz.
+ * @brief Calcula norma do resíduo.
+ * @param *r vetor de resíduo.
+ * @param n tamanho do vetor.
  */
-double calcResidualNorm(double *A, double *b, double *x, int n) {
-    double r[n], norm, sum=0.0;
-    int i, j;
-
-    for (i=0; i<n; ++i) {
-        r[i] = b[i];
-        for (j=0; i<n; ++i) {
-            r[i] -= A[i*n+j]*x[j];
-        }
-    }
-
-    // norma do vetor
-    for (i=0; i<n; ++i)
-        sum += r[i] * r[i];
-    norm = sqrt(sum);
-
-    return norm;
-}
-
 double residualNorm(double *r, int n) {
     double norm, sum = 0.0;
     for (int i=0; i<n; ++i)
@@ -58,6 +37,14 @@ double residualNorm(double *r, int n) {
     return norm;
 }
 
+/**
+ * @brief Cálculo do vetor de resíduo.
+ * @param *A Matriz.
+ * @param *b vetor b.
+ * @param *x Vetor solução.
+ * @param * Vetor de resíduosolução.
+ * @param n Dimensão da matriz.
+ */
 void residue(double *A, double *b, double *x, double *r, int n) {
     for (int i=0; i<n; ++i) {
         r[i] = b[i];
@@ -67,6 +54,13 @@ void residue(double *A, double *b, double *x, double *r, int n) {
     }
 }
 
+/**
+ * @brief Multiplica vetores
+ * @param *v vetor 1
+ * @param *r vetor 2
+ * @param n tamanho dos vetores
+ * @return resultado
+ */
 double multVet(double *v, double *r, int n) {
     double sum = 0.0;
     for (int i=0; i<n; ++i) {
@@ -76,7 +70,6 @@ double multVet(double *v, double *r, int n) {
 }
 
 void multMat(double *A, double *v, double *result, int n) {
-    
 
 }
 
