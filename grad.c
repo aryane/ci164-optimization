@@ -36,8 +36,8 @@ void gradSolver(double *A, double *x, int n, double e, int it){
 
 void calcGrad(double *A, double *x, double *r, int n){
     double iaux, *aux = (double *)malloc(n*sizeof(double));
-    aux = multMat(A,r);
-    iaux = multMat(r,r)/multMat(r,aux);
+    multMat(A, r, aux, n);
+    iaux = multVet(r, r, n)/multVet(r, aux, n);
     for (int i = 0; i < n; ++i)
         x[i] = x[i] + iaux * r[i];
 }
@@ -84,6 +84,19 @@ void residue(double *A, double *b, double *x, double *r, int n) {
             r[i] -= A[i*n+j]*x[j];
         }
     }
+}
+
+double multVet(double *v, double *r, int n) {
+    double sum = 0.0;
+    for (int i=0; i<n; ++i) {
+        sum += v[i]*r[i];
+    }
+    return sum;
+}
+
+void multMat(double *A, double *v, double *result, int n) {
+    
+
 }
 
 /**
