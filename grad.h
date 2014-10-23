@@ -15,6 +15,7 @@
  * @author Kevin Katzer
  */
 
+void gradSolver(double *A, double *x, int n, double e, int it);
 void calcGrad(double *A, double *x, double *r, int n);
 double calcResidualNorm(double *A, double *b, double *x, int n);
 double residualNorm(double *r, int n);
