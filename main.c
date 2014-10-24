@@ -66,7 +66,7 @@ int main(int argc, char **argv) {
 
     double *A, *b;  // Mat A, vector b
     int n;          // Dimension
-    readInput(ivalue, A, b, &n);
+    readInput(ivalue, &A, &b, &n);
     printMat(stdout, A, n);
 
     return 0;

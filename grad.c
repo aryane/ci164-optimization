@@ -123,8 +123,9 @@ void helper() {
  * @param n Dimensão da matriz.
  */
 
-void readInput(char *ivalue, double *A, double *b, int *n){
+void readInput(char *ivalue, double **A, double **b, int *n){
     FILE *stream;
+    double *a, *B;
 
     /* Pega o arquivo de entrada, se não houver, lê da entrada padrão. */
     if (ivalue != NULL)
@@ -134,13 +135,12 @@ void readInput(char *ivalue, double *A, double *b, int *n){
 
     /* Lê dimensão da matriz. */
     fscanf(stream, "%d\n", n);
-
     /* Aloca memória para matriz e vetor b. */
-    if ( ! (A = (double *) malloc((*n)*(*n)*sizeof(double))) ) {
+    if ( ! (a = (double *) malloc((*n)*(*n)*sizeof(double))) ) {
         strerror(ENOMEM);
         exit(ENOMEM);
     }
-    if ( ! (b = (double *) malloc((*n)*sizeof(double))) ) {
+    if ( ! (B = (double *) malloc((*n)*sizeof(double))) ) {
         strerror(ENOMEM);
         exit(ENOMEM);
     }
@@ -148,15 +148,17 @@ void readInput(char *ivalue, double *A, double *b, int *n){
     /* Lê matriz A */
     for (int i=0; i<*n; ++i) {
         for (int j=0; j<*n; ++j) {
-            fscanf(stream, "%lf ", &A[(i*(*n))+j]);
+            fscanf(stream, "%lf ", &a[(i*(*n))+j]);
         }
         fscanf(stream, "\n");
     }
 
     /* Lê vetor b. */
     for (int i=0; i<*n; ++i) {
-        fscanf(stream, "%lf ", &b[i]);
+        fscanf(stream, "%lf ", &B[i]);
     }
+    *A = a;
+    *b = B;
 }
 
 void printMat(FILE *stream, double *A, int n) {
