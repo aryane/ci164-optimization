@@ -16,7 +16,7 @@
  * @param it Número máximo de iterações.
  */
 
-void gradSolver(double *A, double *x, int n, double e, int it){
+void gradSolver(double *A, double *b, double *x, int n, double e, int it){
     double *r = (double *) malloc(n*sizeof(double));
     residue(A, b, x, r, n);
     for (int i = 0; (residualNorm(r,n) >= e) && (i <= it); ++i){
