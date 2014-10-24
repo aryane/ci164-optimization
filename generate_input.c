@@ -24,11 +24,10 @@
  */
 void print_input_mat(FILE *stream, int n) {
     double *b = (double*) malloc(n*sizeof(double));
-    double *A = generateSquareRandomPositiveDefiniteMatrix(n);
+    double *A = (double*) malloc(n*n*sizeof(double));
 
     /** Gera valores randomicos para o vetor b */
-    double invRandMax = 1.0/(double)RAND_MAX;
-    memset((void*)b, (double)rand()*invRandMax, (size_t)n*sizeof(double));
+    generateRandomPositiveDefiniteLinearSystem(n,A,b);
 
     fprintf(stream, "%d\n", n);
     for (int i=0; i<n; ++i) {
