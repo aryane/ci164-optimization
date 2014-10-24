@@ -61,8 +61,13 @@ int main(int argc, char **argv) {
     for (index = optind; index < argc; index++)
         printf("Argumento %s não é opção.\n", argv[index]);
 
-    /* printf ("ivalue = %s, ovalue = %s, rvalue = %s, kvalue = %s, evalue = %s\n",
-      ivalue, ovalue, rvalue, kvalue, evalue); */
+     printf ("ivalue = %s, ovalue = %s, rvalue = %s, kvalue = %s, evalue = %s\n",
+      ivalue, ovalue, rvalue, kvalue, evalue);
+
+    double *A, *b;  // Mat A, vector b
+    int n;          // Dimension
+    readInput(ivalue, A, b, &n);
+    printMat(stdout, A, n);
 
     return 0;
 }
