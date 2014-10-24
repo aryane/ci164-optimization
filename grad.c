@@ -116,33 +116,41 @@ void helper() {
 }
 
 /**
- * @brief Função de leitura da dimensão da matriz
- * @param *f Arquivo de leitura.
- * @return Dimensão da matriz.
- */
-
-int readN(FILE *f){
-    int n;
-    fscanf(f, "%d\n", &n);
-    return n;
-}
-
-/**
  * @brief Função de leitura da matriz
- * @param *f Arquivo de leitura.
+ * @param *f Stream de entrada (arquivo ou stdin).
  * @param *A Matriz.
  * @param *b Vetor.
  * @param n Dimensão da matriz.
  */
 
-void readMat(FILE *f, double *A, double *b, int n){
+void readInput(FILE *stream, double *A, double *b, int n){
+    fscanf(stream, "%d\n", &n);
     for (int i=0; i<n; ++i) {
         for (int j=0; j<n; ++j) {
-            fscanf(f, "%lf ", &A[i*n+j]);
+            fscanf(stream, "%lf ", &A[i*n+j]);
         }
-        fscanf(f, "\n");
+        fscanf(stream, "\n");
     }
     for (int i=0; i<n; ++i) {
-        fscanf(f, "%lf ", &b[i]);
+        fscanf(stream, "%lf ", &b[i]);
     }
+}
+
+/**
+ * @brief Escreve saída em stdout
+ * @param *f Stream de saída (arquivo ou stdin).
+ * @param *A Matriz.
+ * @param *b Vetor.
+ * @param n Dimensão da matriz.
+ */
+
+void printOut(FILE *stream, double resNorm, double timeGrad, double timeError,
+    double *sol, int n){
+    fprintf(stream, "#Erro: %.17g\n", resNorm);
+    fprintf(stream, "#Tempo Grad: %.17g\n", timeGrad);
+    fprintf(stream, "#Tempo Erro: %.17g\n", timeError);
+    fprintf(stream, "#\n");
+    fprintf(stream, "%d\n", n);
+    for (int i=0; i<n; ++i)
+        fprintf(stream, "%.17g ", sol[i]);
 }
