@@ -67,7 +67,9 @@ int main(int argc, char **argv) {
     double *A, *b;  // Mat A, vector b
     int n;          // Dimension
     readInput(ivalue, &A, &b, &n);
-    printMat(stdout, A, n);
+    double *x = (double *)malloc(n*sizeof(double));
+    gradSolver(A, b, x, n, atof(evalue), atoi(kvalue));
+    printVet(stdout, x, n);
 
     return 0;
 }

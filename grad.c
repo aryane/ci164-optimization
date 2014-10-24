@@ -18,11 +18,15 @@
 
 void gradSolver(double *A, double *b, double *x, int n, double e, int it){
     double *r = (double *) malloc(n*sizeof(double));
+    memset(x,0,n*sizeof(double));
     residue(A, b, x, r, n);
-    for (int i = 0; (residualNorm(r,n) >= e) && (i <= it); ++i){
+    for (int i = 0; (i <= it); ++i){
+        // printVet(stdout,x,n);
+        // printf("\n");
         calcGrad(A, x, r, n);
+        // printVet(stdout,x,n);
+        // printf("\n");
         residue(A, b, x, r, n);
-        ++i;
     }
 }
 
@@ -67,7 +71,7 @@ double residualNorm(double *r, int n) {
 void residue(double *A, double *b, double *x, double *r, int n) {
     for (int i=0; i<n; ++i) {
         r[i] = b[i];
-        for (int j=0; i<n; ++i) {
+        for (int j=0; j<n; ++j) {
             r[i] -= A[i*n+j]*x[j];
         }
     }
@@ -89,7 +93,12 @@ double multVet(double *v, double *r, int n) {
 }
 
 void multMat(double *A, double *v, double *result, int n) {
-
+    for (int i=0; i<n; ++i){
+        result[i] = 0.0;
+        for (int j=0; j<n; ++j){
+            result[i] += v[j]*A[i*n+j];
+        }
+    }
 }
 
 /**
@@ -168,6 +177,12 @@ void printMat(FILE *stream, double *A, int n) {
             fprintf(stream, "%.17g ", A[i*n+j]);
         }
         fprintf(stream, "\n");
+    }
+}
+
+void printVet(FILE *stream, double *v, int n) {
+    for (int j=0; j<n; ++j) {
+        fprintf(stream, "%.17g ", v[j]);
     }
 }
 
