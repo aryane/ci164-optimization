@@ -114,3 +114,35 @@ void helper() {
     printf("\t\033[1m-e\033[0m\n");
     printf("\t\tO maior erro aceitável. (Opcional)\tgradSolver -e [erro]\n");
 }
+
+/**
+ * @brief Função de leitura da dimensão da matriz
+ * @param *f Arquivo de leitura.
+ * @return Dimensão da matriz.
+ */
+
+int readN(FILE *f){
+    int n;
+    fscanf(f, "%d\n", &n);
+    return n;
+}
+
+/**
+ * @brief Função de leitura da matriz
+ * @param *f Arquivo de leitura.
+ * @param *A Matriz.
+ * @param *b Vetor.
+ * @param n Dimensão da matriz.
+ */
+
+void readMat(FILE *f, double *A, double *b, int n){
+    for (int i=0; i<n; ++i) {
+        for (int j=0; j<n; ++j) {
+            fscanf(f, "%lf ", &A[i*n+j]);
+        }
+        fscanf(f, "\n");
+    }
+    for (int i=0; i<n; ++i) {
+        fscanf(f, "%lf ", &b[i]);
+    }
+}
