@@ -248,9 +248,9 @@ void printOut(char *ovalue, double resNorm, double timeGrad, double timeError,
     else
         stream = stdout;
 
-    fprintf(stream, "#Erro: %.17g\n", resNorm);
-    fprintf(stream, "#Tempo Grad: %.17gs\n", timeGrad);
-    fprintf(stream, "#Tempo Erro: %.17gs\n", timeError);
+    fprintf(stream, "#Erro: %.17f\n", resNorm);
+    fprintf(stream, "#Tempo Grad: %.17fs\n", timeGrad);
+    fprintf(stream, "#Tempo Erro: %.17fs\n", timeError);
     fprintf(stream, "#\n");
     fprintf(stream, "%d\n", n);
     for (int i=0; i<n; ++i)

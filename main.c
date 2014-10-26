@@ -79,7 +79,6 @@ int main(int argc, char **argv) {
         evalue = "0.0001";
     double *x = (double *)malloc(n*sizeof(double));
     double resNorm = gradSolver(A, b, x, n, atof(evalue), atoi(kvalue), &timeGrad, &timeError);
-    printf("%lf %lf\n\n", timeGrad, timeError);
     printOut(ovalue, resNorm, timeGrad, timeError, x, n);
 
     return 0;
