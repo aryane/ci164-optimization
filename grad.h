@@ -16,7 +16,7 @@
  * @author Kevin Katzer
  */
 
-void gradSolver(double *A, double *b, double *x, int n, double e, int it);
+double gradSolver(double *A, double *b, double *x, int n, double e, int it, double *timeGrad, double *timeError);
 void calcGrad(double *A, double *x, double *r, int n);
 double residualNorm(double *r, int n);
 void residue(double *A, double *b, double *x, double *r, int n);
@@ -26,7 +26,7 @@ void helper();
 void readInput(char *ivalue, double **A, double **b, int *n);
 void printMat(FILE *stream, double *A, int n);
 void printVet(FILE *stream, double *v, int n);
-void printOut(FILE *stream, double resNorm, double timeGrad, double timeError,
+void printOut(char *ovalue, double resNorm, double timeGrad, double timeError,
     double *sol, int n);
 
 #endif

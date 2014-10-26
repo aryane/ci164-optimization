@@ -61,15 +61,26 @@ int main(int argc, char **argv) {
     for (index = optind; index < argc; index++)
         printf("Argumento %s não é opção.\n", argv[index]);
 
-     printf ("ivalue = %s, ovalue = %s, rvalue = %s, kvalue = %s, evalue = %s\n",
-      ivalue, ovalue, rvalue, kvalue, evalue);
-
-    double *A, *b;  // Mat A, vector b
+    double *A, *b, timeGrad, timeError;  // Mat A, vector b
     int n;          // Dimension
-    readInput(ivalue, &A, &b, &n);
+
+    if (rvalue == NULL){
+        readInput(ivalue, &A, &b, &n);
+    }
+    else{
+        b = (double*) malloc(n*sizeof(double));
+        A = (double*) malloc(n*n*sizeof(double));
+
+        generateRandomPositiveDefiniteLinearSystem(n,A,b);
+    }
+    if (kvalue == NULL)
+        sprintf(kvalue, "%d", 2*n);
+    if (evalue == NULL)
+        evalue = "0.0001";
     double *x = (double *)malloc(n*sizeof(double));
-    gradSolver(A, b, x, n, atof(evalue), atoi(kvalue));
-    printVet(stdout, x, n);
+    double resNorm = gradSolver(A, b, x, n, atof(evalue), atoi(kvalue), &timeGrad, &timeError);
+    printf("%lf %lf\n\n", timeGrad, timeError);
+    printOut(ovalue, resNorm, timeGrad, timeError, x, n);
 
     return 0;
 }
