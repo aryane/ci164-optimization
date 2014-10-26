@@ -17,16 +17,35 @@
  */
 
 void gradSolver(double *A, double *b, double *x, int n, double e, int it){
+    int i = 0;
     double *r = (double *) malloc(n*sizeof(double));
     memset(x,0,n*sizeof(double));
+    e = fabs(e);
+
     residue(A, b, x, r, n);
-    for (int i = 0; (i <= it); ++i){
-        // printVet(stdout,x,n);
-        // printf("\n");
-        calcGrad(A, x, r, n);
-        // printVet(stdout,x,n);
-        // printf("\n");
-        residue(A, b, x, r, n);
+    double n0 = residualNorm(r, n);
+    calcGrad(A, x, r, n);
+    residue(A, b, x, r, n);
+    double n1 = residualNorm(r, n);
+
+    int ra = 1; //Resíduo atual. Se for 0, n0 é a norma resíduo atual e n1 a do resíduo anterior.
+    double relErr = n0 - n1;
+
+    while ((fabs(relErr) > e) && (++i<it)){
+        if (ra == 0){
+            calcGrad(A, x, r, n);
+            residue(A, b, x, r, n);
+            ra = 1;
+            n0 = residualNorm(r, n);
+            relErr = n0 - n1;
+        }
+        if (ra == 1){
+            calcGrad(A, x, r, n);
+            residue(A, b, x, r, n);
+            ra = 0;
+            n1 = residualNorm(r, n);
+            relErr = n1 - n0;
+        }
     }
 }
 
@@ -184,6 +203,7 @@ void printVet(FILE *stream, double *v, int n) {
     for (int j=0; j<n; ++j) {
         fprintf(stream, "%.17g ", v[j]);
     }
+    fprintf(stream, "\n");
 }
 
 /**
