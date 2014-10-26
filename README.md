@@ -1,17 +1,13 @@
-<b>NOME</b>
-        gradSolver - Soluciona um Sistema Linear pelo Método do Gradiente
-<b>SINOPSE</b>
-        ./gradSolver [OPTION]...
-<b>DESCRIÇÃO</b>
-        Resolve um sistema linear a partir de uma matriz quadrada definida, positiva e simétrica.
-        Parâmetros possíveis:
-        -i
-                Arquivo de entrada do programa. Se não incluído, a matriz deve ser inserida via stdin.  gradSolver -i [endereço do arquivo]
-        -o
-                Arquivo de saída do programa. Se não incluído, a matriz será impressa em stdout.        gradSolver -o [endereço do arquivo]
-        -r
-                Dimensão da matriz a ser gerada aleatoriamente. Não deve ser inserido se for fornecido um arquivo de entrada.   gradSolver -r [dimensão]
-        -k
-                Número máximo de iterações a serem executadas. (Opcional)       gradSolver -k [número de iterações]
-        -e
-                O maior erro aceitável. (Opcional)      gradSolver -e [erro]
+gradSolver - Soluciona um Sistema Linear pelo Método do Gradiente
+        
+Aryane Ast dos Santos GRR20108817
+Kevin Katzer GRR20113204
+        
+generate_input.c: Cria um arquivo de entrada contendo uma matriz positiva definida no formato definido na especificação. 
+grad.*: Contém as funções principais para cálculo do gradiente e auxiliares do método, como leitura dos dados, multiplicação de matrizes e vetores, cálculo de resíduo e norma do mesmo, ajuda e resultados finais.
+mat_utils.*: Contém as funções definidas pelo professor. No caso a que gera a matriz e uma para calcular o tempo.
+main.c: Faz o parsing dos parâmetros com getopt e invoca função que calcula método do gradiente.
+
+Escolhemos representar o sistema linear num vetor unidimensional. A alternativa seria usar uma matriz bidimensional, mas o acesso ficaria mais caro, conforme visto em sala de aula.
+
+Não descobrimos nenhum bug, mas também não testamos o programa à exaustão, o que não diz muito.
