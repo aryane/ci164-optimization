@@ -22,7 +22,8 @@ int main(int argc, char **argv) {
     char *rvalue = NULL;
     char *kvalue = NULL;
     char *evalue = NULL;
-    int index;
+    double error;
+    int index, k;
     int c;
 
     while ((c = getopt(argc, argv, "i:o:r:k:e:")) != -1) {
@@ -61,25 +62,35 @@ int main(int argc, char **argv) {
     for (index = optind; index < argc; index++)
         printf("Argumento %s não é opção.\n", argv[index]);
 
-    double *A, *b, timeGrad, timeError;  // Mat A, vector b
-    int n;          // Dimension
+
+    /* Pega o arquivo de entrada, se não houver, lê da entrada padrão. */
+    FILE *stream = (ivalue == NULL? stdin : fopen(ivalue, "r"));
+
+    int n;
+    fscanf(stream, "%d", &n);
+    double *A = (double*) malloc(n*n*sizeof(double));
+    double *b = (double*) malloc(n*sizeof(double));
+    double timeGrad, timeError;
 
     if (rvalue == NULL){
-        readInput(ivalue, &A, &b, &n);
+        readInput(stream, ivalue, &A, &b, n);
     }
-    else{
-        b = (double*) malloc(n*sizeof(double));
-        A = (double*) malloc(n*n*sizeof(double));
+    else { //FIXME rvalue
+        generateRandomPositiveDefiniteLinearSystem(n, A, b);
+    }
 
-        generateRandomPositiveDefiniteLinearSystem(n,A,b);
-    }
-    if (kvalue == NULL)
-        sprintf(kvalue, "%d", 2*n);
-    if (evalue == NULL)
-        evalue = "0.0001";
+    /* Pega erro e máximo de iterações */
+    k = (kvalue == NULL? 2*n : atoi(kvalue));
+    error = (evalue == NULL? 0.0001 : atof(evalue));
+
     double *x = (double *)malloc(n*sizeof(double));
-    double resNorm = gradSolver(A, b, x, n, atof(evalue), atoi(kvalue), &timeGrad, &timeError);
-    printOut(ovalue, resNorm, timeGrad, timeError, x, n);
+    double residualNorm = gradSolver(A, b, x, n, error, k, &timeGrad, &timeError);
+    printOut(ovalue, residualNorm, timeGrad, timeError, x, n);
+
+    free(A);
+    free(b);
+    if (ivalue != NULL)
+        fclose(stream);
 
     return 0;
 }
