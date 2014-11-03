@@ -62,22 +62,25 @@ int main(int argc, char **argv) {
     for (index = optind; index < argc; index++)
         printf("Argumento %s não é opção.\n", argv[index]);
 
-
-    /* Pega o arquivo de entrada, se não houver, lê da entrada padrão. */
-    FILE *stream = (ivalue == NULL? stdin : fopen(ivalue, "r"));
-
     int n;
-    fscanf(stream, "%d", &n);
-    double *A = (double*) malloc(n*n*sizeof(double));
-    double *b = (double*) malloc(n*sizeof(double));
-    double timeGrad, timeError;
-
-    if (rvalue == NULL){
+    double *A, *b;
+    if (rvalue == NULL) {
+        /* Pega o arquivo de entrada, se não houver, lê da entrada padrão. */
+        FILE *stream = (ivalue == NULL? stdin : fopen(ivalue, "r"));
+        fscanf(stream, "%d", &n);
+        A = (double*) malloc(n*n*sizeof(double));
+        b = (double*) malloc(n*sizeof(double));
         readInput(stream, ivalue, &A, &b, n);
+        fclose(stream);
     }
-    else { //FIXME rvalue
+    else {
+        n = atoi(rvalue);
+        A = (double*) malloc(n*n*sizeof(double));
+        b = (double*) malloc(n*sizeof(double));
         generateRandomPositiveDefiniteLinearSystem(n, A, b);
     }
+
+    double timeGrad, timeError;
 
     /* Pega erro e máximo de iterações */
     k = (kvalue == NULL? 2*n : atoi(kvalue));
@@ -89,8 +92,6 @@ int main(int argc, char **argv) {
 
     free(A);
     free(b);
-    if (ivalue != NULL)
-        fclose(stream);
 
     return 0;
 }
