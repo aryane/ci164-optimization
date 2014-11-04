@@ -1,0 +1,54 @@
+==28998== Memcheck, a memory error detector
+==28998== Copyright (C) 2002-2013, and GNU GPL'd, by Julian Seward et al.
+==28998== Using Valgrind-3.10.0.SVN and LibVEX; rerun with -h for copyright info
+==28998== Command: ./gradSolver -i in
+==28998== 
+==28998== 
+==28998== HEAP SUMMARY:
+==28998==     in use at exit: 800 bytes in 16 blocks
+==28998==   total heap usage: 19 allocs, 3 frees, 1,608 bytes allocated
+==28998== 
+==28998== 40 bytes in 1 blocks are definitely lost in loss record 1 of 7
+==28998==    at 0x4C2AB80: malloc (vg_replace_malloc.c:292)
+==28998==    by 0x400FB8: main (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998== 
+==28998== 40 bytes in 1 blocks are definitely lost in loss record 2 of 7
+==28998==    at 0x4C2AB80: malloc (vg_replace_malloc.c:292)
+==28998==    by 0x40109C: main (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998== 
+==28998== 40 bytes in 1 blocks are definitely lost in loss record 3 of 7
+==28998==    at 0x4C2AB80: malloc (vg_replace_malloc.c:292)
+==28998==    by 0x40119B: gradSolver (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998==    by 0x4010DA: main (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998== 
+==28998== 40 bytes in 1 blocks are definitely lost in loss record 4 of 7
+==28998==    at 0x4C2AB80: malloc (vg_replace_malloc.c:292)
+==28998==    by 0x401593: calcGrad (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998==    by 0x4012AF: gradSolver (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998==    by 0x4010DA: main (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998== 
+==28998== 200 bytes in 1 blocks are definitely lost in loss record 5 of 7
+==28998==    at 0x4C2AB80: malloc (vg_replace_malloc.c:292)
+==28998==    by 0x400FA3: main (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998== 
+==28998== 200 bytes in 5 blocks are definitely lost in loss record 6 of 7
+==28998==    at 0x4C2AB80: malloc (vg_replace_malloc.c:292)
+==28998==    by 0x401593: calcGrad (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998==    by 0x401371: gradSolver (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998==    by 0x4010DA: main (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998== 
+==28998== 240 bytes in 6 blocks are definitely lost in loss record 7 of 7
+==28998==    at 0x4C2AB80: malloc (vg_replace_malloc.c:292)
+==28998==    by 0x401593: calcGrad (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998==    by 0x40142E: gradSolver (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998==    by 0x4010DA: main (in /home/bcc/aras10/ci164-optimization/gradSolver)
+==28998== 
+==28998== LEAK SUMMARY:
+==28998==    definitely lost: 800 bytes in 16 blocks
+==28998==    indirectly lost: 0 bytes in 0 blocks
+==28998==      possibly lost: 0 bytes in 0 blocks
+==28998==    still reachable: 0 bytes in 0 blocks
+==28998==         suppressed: 0 bytes in 0 blocks
+==28998== 
+==28998== For counts of detected and suppressed errors, rerun with: -v
+==28998== ERROR SUMMARY: 7 errors from 7 contexts (suppressed: 0 from 0)
