@@ -68,6 +68,8 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
     *timeGrad /= i+1; //Contando com a iteração de fora do laço.
     *timeError /= errors;
 
+    free(r);
+
     if (ra == 0)
         return n0;
     else
@@ -88,6 +90,7 @@ void calcGrad(double *A, double *x, double *r, int n){
     iaux = multVet(r, r, n)/multVet(r, aux, n);
     for (int i = 0; i < n; ++i)
         x[i] = x[i] + iaux * r[i];
+    free(aux);
 }
 
 /**
