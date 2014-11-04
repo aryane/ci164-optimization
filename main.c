@@ -93,6 +93,11 @@ int main(int argc, char **argv) {
     free(A);
     free(b);
     free(x);
+    free(ivalue);
+    free(ovalue);
+    free(rvalue);
+    free(kvalue);
+    free(evalue);
 
     return 0;
 }
