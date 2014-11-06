@@ -2,7 +2,6 @@
 #include <ctype.h>
 #include <stdio.h>
 #include <stdlib.h>
-#include <unistd.h>
 #include <getopt.h>
 
 #include "mat_utils.h"
@@ -22,9 +21,9 @@ int main(int argc, char **argv) {
     char *rvalue = NULL;
     char *kvalue = NULL;
     char *evalue = NULL;
-    double error;
-    int index, k;
-    int c;
+    int index, k, c, n;
+    double *A, *b, *x, residualNorm, timeGrad, timeError, error;
+    FILE *stream;
 
     while ((c = getopt(argc, argv, "i:o:r:k:e:")) != -1) {
         switch (c) {
@@ -62,16 +61,13 @@ int main(int argc, char **argv) {
     for (index = optind; index < argc; index++)
         printf("Argumento %s não é opção.\n", argv[index]);
 
-    int n;
-    double *A, *b;
     if (rvalue == NULL) {
         /* Pega o arquivo de entrada, se não houver, lê da entrada padrão. */
-        FILE *stream = (ivalue == NULL? stdin : fopen(ivalue, "r"));
+        stream = (ivalue == NULL? stdin : fopen(ivalue, "r"));
         fscanf(stream, "%d", &n);
         A = (double*) malloc(n*n*sizeof(double));
         b = (double*) malloc(n*sizeof(double));
-        readInput(stream, ivalue, &A, &b, n);
-        fclose(stream);
+        readInput(stream, &A, &b, n);
     }
     else {
         n = atoi(rvalue);
@@ -80,15 +76,15 @@ int main(int argc, char **argv) {
         generateRandomPositiveDefiniteLinearSystem(n, A, b);
     }
 
-    double timeGrad, timeError;
-
-    /* Pega erro e máximo de iterações */
+    /* Pega erro, arquivo saída e máximo de iterações */
     k = (kvalue == NULL? 2*n : atoi(kvalue));
     error = (evalue == NULL? 0.0001 : atof(evalue));
+    fclose(stream);
+    stream = (ovalue == NULL? stdout : fopen(ovalue, "r"));
 
-    double *x = (double *)malloc(n*sizeof(double));
-    double residualNorm = gradSolver(A, b, x, n, error, k, &timeGrad, &timeError);
-    printOut(ovalue, residualNorm, timeGrad, timeError, x, n);
+    x = (double *)malloc(n*sizeof(double));
+    residualNorm = gradSolver(A, b, x, n, error, k, &timeGrad, &timeError);
+    printOut(stream, residualNorm, timeGrad, timeError, x, n);
 
     free(A);
     free(b);
@@ -98,6 +94,7 @@ int main(int argc, char **argv) {
     free(rvalue);
     free(kvalue);
     free(evalue);
+    fclose(stream);
 
     return 0;
 }

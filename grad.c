@@ -179,7 +179,7 @@ void helper() {
  * @param n Dimensão da matriz.
  */
 
-void readInput(FILE *stream, char *ivalue, double **A, double **b, int n){
+void readInput(FILE *stream, double **A, double **b, int n){
     double *a, *B;
 
     /* Aloca memória para matriz e vetor b. */
@@ -231,15 +231,8 @@ void printVet(FILE *stream, double *v, int n) {
  * @param *f Stream de saída (arquivo ou stdin).
  * @param n Dimensão da matriz.
  */
-void printOut(char *ovalue, double resNorm, double timeGrad, double timeError,
+void printOut(FILE *stream, double resNorm, double timeGrad, double timeError,
     double *sol, int n){
-    FILE *stream;
-
-    if (ovalue != NULL)
-        stream = fopen(ovalue, "w");
-    else
-        stream = stdout;
-
     fprintf(stream, "#Erro: %.17f\n", resNorm);
     fprintf(stream, "#Tempo Grad: %.17fs\n", timeGrad);
     fprintf(stream, "#Tempo Erro: %.17fs\n", timeError);
@@ -247,7 +240,4 @@ void printOut(char *ovalue, double resNorm, double timeGrad, double timeError,
     fprintf(stream, "%d\n", n);
     for (int i=0; i<n; ++i)
         fprintf(stream, "%.17g ", sol[i]);
-
-    if (ovalue != NULL)
-        fclose(stream);
 }

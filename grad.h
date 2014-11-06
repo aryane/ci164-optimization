@@ -23,10 +23,10 @@ void residue(double *A, double *b, double *x, double *r, int n);
 double multVet(double *v, double *r, int n);
 void multMat(double *A, double *v, double *result, int n);
 void helper();
-void readInput(FILE *stream, char *ivalue, double **A, double **b, int n);
+void readInput(FILE *stream, double **A, double **b, int n);
 void printMat(FILE *stream, double *A, int n);
 void printVet(FILE *stream, double *v, int n);
-void printOut(char *ovalue, double resNorm, double timeGrad, double timeError,
+void printOut(FILE *stream, double resNorm, double timeGrad, double timeError,
     double *sol, int n);
 
 #endif
