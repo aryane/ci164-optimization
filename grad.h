@@ -18,6 +18,7 @@
 
 double gradSolver(double *A, double *b, double *x, int n, double e, int it, double *timeGrad, double *timeError);
 void calcGrad(double *A, double *x, double *r, int n);
+double lambda(double *A, double *r, int n);
 double residualNorm(double *r, int n);
 void residue(double *A, double *b, double *x, double *r, int n);
 double multVet(double *v, double *r, int n);

@@ -85,12 +85,25 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
  */
 
 void calcGrad(double *A, double *x, double *r, int n){
+    double iaux;
+    iaux = lambda(A,r,n);
+    for (int i = 0; i < n; ++i)
+        x[i] = x[i] + iaux * r[i];
+}
+
+/**
+ * @brief Iterações do método de gradiente
+ * @param *A Matriz.
+ * @param *r Vetor de resíduos.
+ * @param n Dimensão da matriz.
+ */
+
+double lambda(double *A, double *r, int n){
     double iaux, *aux = (double *)malloc(n*sizeof(double));
     multMat(A, r, aux, n);
     iaux = multVet(r, r, n)/multVet(r, aux, n);
-    for (int i = 0; i < n; ++i)
-        x[i] = x[i] + iaux * r[i];
     free(aux);
+    return iaux;
 }
 
 /**
