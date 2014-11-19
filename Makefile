@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c99 -Wall -lm
+CFLAGS = -g -std=c99 -Wall -lm
 
 all:
 	        $(CC) main.c grad.* mat_utils.* -o gradSolver $(CFLAGS)

@@ -23,7 +23,6 @@ int main(int argc, char **argv) {
     char *evalue = NULL;
     int index, k, c, n;
     double *A, *b, *x, residualNorm, timeGrad, timeError, error;
-    FILE *stream;
 
     while ((c = getopt(argc, argv, "i:o:r:k:e:")) != -1) {
         switch (c) {
@@ -63,11 +62,12 @@ int main(int argc, char **argv) {
 
     if (rvalue == NULL) {
         /* Pega o arquivo de entrada, se não houver, lê da entrada padrão. */
-        stream = (ivalue == NULL? stdin : fopen(ivalue, "r"));
+        FILE *stream = (ivalue == NULL? stdin : fopen(ivalue, "r"));
         fscanf(stream, "%d", &n);
         A = (double*) malloc(n*n*sizeof(double));
         b = (double*) malloc(n*sizeof(double));
         readInput(stream, &A, &b, n);
+        if (ivalue != NULL) fclose(stream);
     }
     else {
         n = atoi(rvalue);
@@ -79,22 +79,23 @@ int main(int argc, char **argv) {
     /* Pega erro, arquivo saída e máximo de iterações */
     k = (kvalue == NULL? 2*n : atoi(kvalue));
     error = (evalue == NULL? 0.0001 : atof(evalue));
-    fclose(stream);
-    stream = (ovalue == NULL? stdout : fopen(ovalue, "r"));
+    FILE *outStream = (ovalue == NULL? stdout : fopen(ovalue, "w"));
+
 
     x = (double *)malloc(n*sizeof(double));
     residualNorm = gradSolver(A, b, x, n, error, k, &timeGrad, &timeError);
-    printOut(stream, residualNorm, timeGrad, timeError, x, n);
+    printOut(outStream, residualNorm, timeGrad, timeError, x, n);
 
+    if (ovalue != NULL) fclose(outStream);
     free(A);
     free(b);
     free(x);
-    free(ivalue);
-    free(ovalue);
-    free(rvalue);
-    free(kvalue);
-    free(evalue);
-    fclose(stream);
+
+    if (ivalue != NULL) free(ivalue);
+    if (ovalue != NULL) free(ovalue);
+    if (kvalue != NULL) free(kvalue);
+    if (evalue != NULL) free(evalue);
+    if (rvalue != NULL) free(rvalue);
 
     return 0;
 }
