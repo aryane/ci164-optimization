@@ -64,8 +64,6 @@ int main(int argc, char **argv) {
         /* Pega o arquivo de entrada, se não houver, lê da entrada padrão. */
         FILE *stream = (ivalue == NULL? stdin : fopen(ivalue, "r"));
         fscanf(stream, "%d", &n);
-        A = (double*) malloc(n*n*sizeof(double));
-        b = (double*) malloc(n*sizeof(double));
         readInput(stream, &A, &b, n);
         if (ivalue != NULL) fclose(stream);
     }
@@ -81,21 +79,15 @@ int main(int argc, char **argv) {
     error = (evalue == NULL? 0.0001 : atof(evalue));
     FILE *outStream = (ovalue == NULL? stdout : fopen(ovalue, "w"));
 
-
     x = (double *)malloc(n*sizeof(double));
     residualNorm = gradSolver(A, b, x, n, error, k, &timeGrad, &timeError);
     printOut(outStream, residualNorm, timeGrad, timeError, x, n);
 
     if (ovalue != NULL) fclose(outStream);
+
     free(A);
     free(b);
     free(x);
-
-    if (ivalue != NULL) free(ivalue);
-    if (ovalue != NULL) free(ovalue);
-    if (kvalue != NULL) free(kvalue);
-    if (evalue != NULL) free(evalue);
-    if (rvalue != NULL) free(rvalue);
 
     return 0;
 }
