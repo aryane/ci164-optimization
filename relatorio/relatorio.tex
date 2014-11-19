@@ -1,0 +1,116 @@
+\documentclass[12pt]{article}
+
+% Fonte com acentos
+\usepackage[brazil]{babel} \usepackage[utf8]{inputenc} \usepackage[T1]{fontenc}
+\usepackage[lighttt]{lmodern} \usepackage[top=1.4in, bottom=1in, left=1in,
+right=1in]{geometry} \usepackage{graphicx} % para adicionar imagem
+\usepackage{listings} \usepackage{amsmath} \usepackage{indentfirst}
+
+\begin{document}
+
+\setlength{\parskip}{0.2cm}
+
+\title{Análise de código e eficiência do método do Gradiente}
+
+\author{Aryane Ast dos Santos\\ Kevin Katzer}
+
+\date{23 de novembro de 2014}
+
+\maketitle
+
+\tableofcontents
+
+\section{Introdução}
+Motivação...
+
+\section{Verificação de uso de memória com Valgrind}\label{sec:Valgrind}
+
+Ao executar a ferramenta Valgrind para se obter informações sobre vazamento de
+memória no programa gradSolver, foi possível observar 5 erros, todos em
+contextos diferentes, além de 16 allocações e apenas 2 liberações de memória.
+
+Os resultados da execução do programa são parcialmente apresentados na
+figura~\ref{fig:valgrindOut}.
+
+\begin{figure}[htb]
+\begin{tt}\noindent
+==29599== Command: ./gradSolver -r 5\\
+==28949== HEAP SUMMARY:\\
+==28949==     in use at exit: 560 bytes in 14 blocks\\
+==28949==   total heap usage: 16 allocs, 2 frees, 800 bytes allocated\\
+==28949== LEAK SUMMARY:\\
+==28949==    definitely lost: 560 bytes in 14 blocks\\
+==28949== ERROR SUMMARY: 5 errors from 5 contexts (suppressed: 0 from 0)
+\end{tt}\caption{Saída do Valgrind}\label{fig:valgrindOut}
+\end{figure}
+
+Aqui o gradSolver foi executado com uma matriz quadrada de ordem 5, porém os
+mesmos problemas listados na figura~\ref{fig:valgrindOut} são encontrados em
+execuções de matrizes de qualquer dimensão. E de maneira análoga, ao resolver os
+problemas apresentados, numa execução com matriz maior, eles ficam também
+automaticamente resolvidos.
+
+Para contornar os vazamentos de memória encontrados, foi necessário liberar a
+memória dos vetores alocados explicitamente como o vetor x na função main, o
+vetor aux em calcGrad e o vetor r de resíduo na função gradSolver. Além disso,
+no main, foram adicionados frees para os ponteiros para char das flags do
+getopt.
+
+\section{Arquitetura do computador}\label{sec:likwid}
+
+Utilizando a ferramenta likwid-topology, é possível obter as seguintes
+informações sobre a arquitetura do computador utilizado para os testes de
+performance.
+
+\begin{figure}[ht]
+\begin{tt}\noindent
+CPU type:   AMD Interlagos processor \\
+\\
+Hardware Thread Topology\\
+Sockets:    1 \\
+Cores per socket:   6 \\
+Threads per core:   1 \\
+HWThread    Thread      Core        Socket\\
+0       0       0       0\\
+1       0       1       0\\
+2       0       2       0\\
+3       0       3       0\\
+4       0       4       0\\
+5       0       5       0\\
+Socket 0: ( 0 1 2 3 4 5 )\\
+\\
+Cache Topology\\
+Level:  1\\
+Size:   16 kB\\
+Cache groups:   ( 0 ) ( 1 ) ( 2 ) ( 3 ) ( 4 ) ( 5 )\\
+Level:  2\\
+Size:   2 MB\\
+Cache groups:   ( 0 1 ) ( 2 3 ) ( 4 5 )\\
+Level:  3\\
+Size:   8 MB\\
+Cache groups:   ( 0 1 2 3 4 5 )\\
+\\
+NUMA Topology\\
+NUMA domains: 1 \\
+Domain 0:\\
+Processors:  0 1 2 3 4 5\\
+Relative distance to nodes:  10\\
+Memory: 152.301 MB free of total 3678.97 MB\\
+\end{tt}\caption{Saída do likwid-topology}\label{fig:topologyOut}
+\end{figure}
+
+Como podemos notar na figura~\ref{fig:topologyOut} ...
+
+\section{Análise do cálculo do fator lambda}\label{sec:lambda}
+\subsection{flop operations}
+\subsection{mem utilization}
+\subsection{explicar graficos flops\_dp, cache, mem}
+\subsection{melhoria}
+
+\section{Análise do cálculo do resíduo}\label{sec:residuo}
+\subsection{flop operations}
+\subsection{mem utilization}
+\subsection{explicar graficos flops\_dp, cache, mem}
+\subsection{melhoria}
+
+\end{document}
