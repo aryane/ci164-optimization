@@ -20,6 +20,8 @@ right=1in]{geometry} \usepackage{graphicx} % para adicionar imagem
 
 \tableofcontents
 
+\pagebreak
+
 \section{Introdução}
 Motivação...
 
@@ -103,7 +105,7 @@ Como pode-se notar na figura~\ref{fig:topologyOut}, nas servidoras do DInf, há 
 
 Existem 3 níveis de cache, sendo o primeiro (L1) com 16kB de memória, o segundo (L2) com 2MB e o terceiro (L3) com 8MB. A cache L1 é separada em 6 grupos, sendo que cada grupo é destinado a um core diferente, a cache L2 é separada em 3, tendo um par de cores ligados a cada grupo, e o último nível de cache, L3, não é separado, sendo toda a sua memória disponível a todos os cores da CPU.
 
-Por fim, a memória RAM totaliza 3678.97MB, sendo que desse tanto, apenas 152.301MB estavam livres no momento de execução do likwid-topology.
+Por fim, a memória RAM totaliza 3678.97MB, sendo que desse total, apenas 152.301MB estavam livres no momento de execução do likwid-topology.
 
 \section{Análise do cálculo do fator lambda}\label{sec:lambda}
 \subsection{flop operations}
