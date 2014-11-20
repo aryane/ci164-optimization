@@ -101,11 +101,57 @@ Memory: 152.301 MB free of total 3678.97 MB\\
 \end{tt}\caption{Saída do likwid-topology}\label{fig:topologyOut}
 \end{figure}
 
-Como pode-se notar na figura~\ref{fig:topologyOut}, nas servidoras do DInf, há uma CPU Interlagos, fabricada pela AMD, com 1 socket e 6 cores.
+Como pode-se notar na figura~\ref{fig:topologyOut}, nas servidoras do DInf, há
+uma CPU Interlagos, fabricada pela AMD, com 1 socket e 6 cores.
 
-Existem 3 níveis de cache, sendo o primeiro (L1) com 16kB de memória, o segundo (L2) com 2MB e o terceiro (L3) com 8MB. A cache L1 é separada em 6 grupos, sendo que cada grupo é destinado a um core diferente, a cache L2 é separada em 3, tendo um par de cores ligados a cada grupo, e o último nível de cache, L3, não é separado, sendo toda a sua memória disponível a todos os cores da CPU.
+Existem 3 níveis de cache, sendo o primeiro (L1) com 16kB de memória, o segundo
+(L2) com 2MB e o terceiro (L3) com 8MB. A cache L1 é separada em 6 grupos, sendo
+que cada grupo é destinado a um core diferente, a cache L2 é separada em 3,
+tendo um par de cores ligados a cada grupo, e o último nível de cache, L3, não é
+separado, sendo toda a sua memória disponível a todos os cores da CPU.
 
-Por fim, a memória RAM totaliza 3678.97MB, sendo que desse total, apenas 152.301MB estavam livres no momento de execução do likwid-topology.
+Por fim, a memória RAM totaliza 3678.97MB, sendo que desse total, apenas
+152.301MB estavam livres no momento de execução do likwid-topology.
+
+Dada a especificação acima, o maior sistema linear passível de ser resolvido
+pela arquitetura descrita é ... , por motivos.
+
+\section{Comparação de desempenho geral}\label{sec:desempenhoGeral}
+
+Para a execução dos testes de desempenho, foi utilizada a ferramenta likwid-pin,
+que afixa a execução do programa à um core da máquina em uso dedicado. Mas como
+as caches continuam sendo compartilhadas, o que é possível notar na figura
+(likwid-topology -g), analisar o desempenho de diferentes execuções se torna um
+problema, pois é necessário minimizar o uso de cache pelos outros programas. A
+solução encontrada foi executar o gradSolver em single user mode.
+
+No gráfico~\ref{fig:execucao}, é mostrado os tempos de execução em segundos, que
+foram obtidos com a função timestamp, para matrizes de dimensões 32, 33, 256,
+257, 1024, 1025, 2048 e 2049. O eixo x está em escala logarítmica.
+
+Pode-se notar que na escala do gráfico, as diferenças de tempo de execução entre
+os pares de dimensões 32 e 33, 256 e 257, 1024 e 1025, e finalmente 2048 e 2049
+são desprezíveis. As execuções do gradSolver com matrizes de dimensões que não
+são potência de 2 são ligeiramente melhores, por causa da associatividade da
+cache. Uma melhor visualização dos tempos de execução pode ser observada na
+tabela~\ref{fig:tabelaExecucoes}.
+
+\begin{figure}[htb]
+\begin{tt}\noindent
+    32      0.00001764297485352\\
+    33      0.00001815387180873\\
+    256     0.00094001633780343\\
+    257     0.00092514355977376\\
+    1024    0.01497772761753627\\
+    2048    0.05953870500837054\\
+    2049    0.05932899883815220\\
+\end{tt}\caption{Tempo de execução por dimensão da matriz}\label{fig:tabelaExecucoes}
+\end{figure}
+
+\begin{figure}[htb] \begin{center}
+\includegraphics[width=150mm]{execucoes.jpg} \end{center}
+\caption{Tempo de execução por dimensão da matriz}\label{fig:execucao}
+\end{figure}
 
 \section{Análise do cálculo do fator lambda}\label{sec:lambda}
 \subsection{flop operations}

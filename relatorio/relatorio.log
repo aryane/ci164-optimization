@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.6)  19 NOV 2014 21:28
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.6)  20 NOV 2014 13:19
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -582,11 +582,11 @@ LaTeX Font Info:    External font `lmex10' loaded for size
 (Font)              <7> on input line 19.
  (./relatorio.toc
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <12> on input line 6.
+(Font)              <12> on input line 7.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <8> on input line 6.
+(Font)              <8> on input line 7.
 LaTeX Font Info:    External font `lmex10' loaded for size
-(Font)              <6> on input line 6.
+(Font)              <6> on input line 7.
 )
 \tf@toc=\write3
 \openout3 = `relatorio.toc'.
@@ -594,46 +594,57 @@ LaTeX Font Info:    External font `lmex10' loaded for size
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 36.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 38.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 66--99
+Underfull \hbox (badness 10000) in paragraph at lines 68--101
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--99
+Underfull \hbox (badness 10000) in paragraph at lines 68--101
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--99
+Underfull \hbox (badness 10000) in paragraph at lines 68--101
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 66--99
+Underfull \hbox (badness 10000) in paragraph at lines 68--101
 
  []
 
-[2] [3] [4] (./relatorio.aux) ) 
+[2]
+Underfull \hbox (badness 10000) in paragraph at lines 140--148
+
+ []
+
+<execucoes.jpg, id=13, 481.8pt x 361.35pt>
+File: execucoes.jpg Graphic file (type jpg)
+ <use execucoes.jpg>
+Package pdftex.def Info: execucoes.jpg used on input line 152.
+(pdftex.def)             Requested size: 426.79134pt x 320.10075pt.
+ [3] [4] [5]
+[6 <./execucoes.jpg>] (./relatorio.aux) ) 
 Here is how much of TeX's memory you used:
- 4897 strings out of 493307
- 66020 string characters out of 6139906
- 140355 words of memory out of 5000000
- 8254 multiletter control sequences out of 15000+600000
+ 4906 strings out of 493307
+ 66164 string characters out of 6139906
+ 140379 words of memory out of 5000000
+ 8261 multiletter control sequences out of 15000+600000
  47882 words of font info for 43 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
- 38i,6n,32p,424b,219s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}<
-/usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts/type1
-/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/sh
-are/texmf/fonts/type1/public/lm/lmtl10.pfb>
-Output written on relatorio.pdf (4 pages, 116837 bytes).
+ 38i,6n,32p,288b,268s stack positions out of 5000i,500n,10000p,200000b,80000s
+{/usr/share/texmf/fonts/enc/dvips/lm/l
+m-ec.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/f
+onts/type1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pf
+b></usr/share/texmf/fonts/type1/public/lm/lmtl10.pfb>
+Output written on relatorio.pdf (6 pages, 145640 bytes).
 PDF statistics:
- 34 PDF objects out of 1000 (max. 8388607)
- 23 compressed objects within 1 object stream
+ 41 PDF objects out of 1000 (max. 8388607)
+ 27 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 1 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
