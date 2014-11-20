@@ -25,19 +25,21 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
     *timeGrad = 0.0;
     *timeError = 0.0;
 
-    *timeGrad -= timestamp(); //Início da contagem do tempo do método
 
     *timeError -= timestamp(); //Início da contagem de tempo do cálculo de resíduo
     residue(A, b, x, r, n);
     double n0 = residualNorm(r, n);
     *timeError += timestamp(); //Fim da contagem de tempo do cálculo de resíduo
     ++errors;
+    *timeGrad -= timestamp(); //Início da contagem do tempo do método
     calcGrad(A, x, r, n);
+    *timeGrad += timestamp(); //Pausa da contagem do tempo do método
     *timeError -= timestamp(); //Início da contagem de tempo do cálculo de resíduo
     residue(A, b, x, r, n);
     double n1 = residualNorm(r, n);
     *timeError += timestamp(); //Fim da contagem de tempo do cálculo de resíduo
     ++errors;
+    *timeGrad -= timestamp(); //Continuação da contagem do tempo do método
 
     int ra = 1; //Resíduo atual. Se for 0, n0 é a norma resíduo atual e n1 a do resíduo anterior.
     double relErr = n0 - n1;
@@ -46,21 +48,25 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
         if (ra == 0){
             calcGrad(A, x, r, n);
             ra = 1;
+            *timeGrad += timestamp(); //Pausa da contagem do tempo do método
             *timeError -= timestamp(); //Início da contagem de tempo do cálculo de resíduo
             residue(A, b, x, r, n);
             n0 = residualNorm(r, n);
             *timeError += timestamp(); //Fim da contagem de tempo do cálculo de resíduo
             ++errors;
+            *timeGrad -= timestamp(); //Continuação da contagem do tempo do método
             relErr = n0 - n1;
         }
         if (ra == 1){
             calcGrad(A, x, r, n);
             ra = 0;
+            *timeGrad += timestamp(); //Pausa da contagem do tempo do método
             *timeError -= timestamp(); //Início da contagem de tempo do cálculo de resíduo
             residue(A, b, x, r, n);
             n1 = residualNorm(r, n);
             *timeError += timestamp(); //Fim da contagem de tempo do cálculo de resíduo
             ++errors;
+            *timeGrad -= timestamp(); //Continuação da contagem do tempo do método
             relErr = n1 - n0;
         }
     }
