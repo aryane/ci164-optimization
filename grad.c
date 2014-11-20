@@ -38,7 +38,9 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
         *timeGrad -= timestamp();
         calcGrad(A, x, r, n);
         *timeGrad += timestamp();
+        *timeError -= timestamp();
         residue(A, b, x, r, n);
+        *timeError += timestamp();
         norm = residualNorm(r, n);
         relErr = norm - prev_norm;
         prev_norm = norm;
