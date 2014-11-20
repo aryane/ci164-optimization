@@ -14,72 +14,40 @@
  * @param n Dimensão da matriz.
  * @param e Erro máximo permitido.
  * @param it Número máximo de iterações.
+ * @param timeError tempo cálculo resíduo
+ * @param timeGrad tempo cálculo gradiente
  */
 
 double gradSolver(double *A, double *b, double *x, int n, double e,
-    int it, double *timeGrad, double *timeError){
-    int i = 0, errors = 0;
+        int it, double *timeGrad, double *timeError){
+    int i = 0;
+    double prev_norm, norm;
     double *r = (double *) malloc(n*sizeof(double));
-    memset(x,0,n*sizeof(double));
-    e = fabs(e);
-    *timeGrad = 0.0;
-    *timeError = 0.0;
 
 
-    *timeError -= timestamp(); //Início da contagem de tempo do cálculo de resíduo
+    memset(x, 0, n*sizeof(double));
+    *timeGrad = *timeError = 0.0;
+
+    *timeError -= timestamp();
     residue(A, b, x, r, n);
-    double n0 = residualNorm(r, n);
-    *timeError += timestamp(); //Fim da contagem de tempo do cálculo de resíduo
-    ++errors;
-    *timeGrad -= timestamp(); //Início da contagem do tempo do método
-    calcGrad(A, x, r, n);
-    *timeGrad += timestamp(); //Pausa da contagem do tempo do método
-    *timeError -= timestamp(); //Início da contagem de tempo do cálculo de resíduo
-    residue(A, b, x, r, n);
-    double n1 = residualNorm(r, n);
-    *timeError += timestamp(); //Fim da contagem de tempo do cálculo de resíduo
-    ++errors;
-    *timeGrad -= timestamp(); //Continuação da contagem do tempo do método
+    *timeError += timestamp();
+    prev_norm = residualNorm(r, n);
 
-    int ra = 1; //Resíduo atual. Se for 0, n0 é a norma resíduo atual e n1 a do resíduo anterior.
-    double relErr = n0 - n1;
-
-    while ((fabs(relErr) > e) && (++i<it)){
-        if (ra == 0){
-            calcGrad(A, x, r, n);
-            ra = 1;
-            *timeGrad += timestamp(); //Pausa da contagem do tempo do método
-            *timeError -= timestamp(); //Início da contagem de tempo do cálculo de resíduo
-            residue(A, b, x, r, n);
-            n0 = residualNorm(r, n);
-            *timeError += timestamp(); //Fim da contagem de tempo do cálculo de resíduo
-            ++errors;
-            *timeGrad -= timestamp(); //Continuação da contagem do tempo do método
-            relErr = n0 - n1;
-        }
-        if (ra == 1){
-            calcGrad(A, x, r, n);
-            ra = 0;
-            *timeGrad += timestamp(); //Pausa da contagem do tempo do método
-            *timeError -= timestamp(); //Início da contagem de tempo do cálculo de resíduo
-            residue(A, b, x, r, n);
-            n1 = residualNorm(r, n);
-            *timeError += timestamp(); //Fim da contagem de tempo do cálculo de resíduo
-            ++errors;
-            *timeGrad -= timestamp(); //Continuação da contagem do tempo do método
-            relErr = n1 - n0;
-        }
+    double relErr = e + 1.0;
+    while ((fabs(relErr) > e) && (i++<it)){
+        *timeGrad -= timestamp();
+        calcGrad(A, x, r, n);
+        *timeGrad += timestamp();
+        residue(A, b, x, r, n);
+        norm = residualNorm(r, n);
+        relErr = norm - prev_norm;
+        prev_norm = norm;
     }
-    *timeGrad += timestamp(); //Fim da contagem do tempo do método
-    *timeGrad /= i+1; //Contando com a iteração de fora do laço.
-    *timeError /= errors;
+
+    *timeGrad /= it;
 
     free(r);
-
-    if (ra == 0)
-        return n0;
-    else
-        return n1;
+    return norm;
 }
 
 /**
