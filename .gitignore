@@ -1,5 +1,7 @@
-gradSolver
-generate_input
+bin/gradSolver
+bin/generate_input
+bin/gradLambda
+bin/gradResidue
 *.swp
 in
 out
