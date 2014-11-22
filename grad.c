@@ -75,16 +75,8 @@ void calcGrad(double *A, double *x, double *r, int n){
  */
 double lambda(double *A, double *r, int n){
     double iaux, *aux = (double *)malloc(n*sizeof(double));
-
-    likwid_markerInit();
-    likwid_markerStartRegion("Compute");
-
     multMat(A, r, aux, n);
     iaux = multVet(r, r, n)/multVet(r, aux, n);
-
-    likwid_markerStopRegion("Compute");
-    likwid_markerClose();
-
     free(aux);
     return iaux;
 }
