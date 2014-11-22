@@ -3,3 +3,4 @@ generate_input
 *.swp
 in
 out
+relatorio/relatorio.{aux,toc}

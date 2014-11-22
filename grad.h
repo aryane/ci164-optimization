@@ -7,6 +7,7 @@
 #include <math.h>
 #include <string.h>
 #include <errno.h>
+#include <likwid.h>
 #include "mat_utils.h"
 
 /**
