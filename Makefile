@@ -7,10 +7,10 @@ all:
 	        $(CC) src/generate_input.c src/mat_utils.* -o bin/generate_input $(CFLAGS)
 
 lambda:
-			$(CC) src/main.c src/gradLambda.c src/grad.h src/mat_utils.* -o bin/gradLambda $(CFLAGS) $(LIKWIDFLAGS)
+			$(CC) src/gradLambda.c src/grad.* src/mat_utils.* -o bin/gradLambda $(CFLAGS) $(LIKWIDFLAGS)
 
 residue:
-			$(CC) src/main.c src/gradResidue.c src/grad.h src/mat_utils.* -o bin/gradResidue $(CFLAGS) $(LIKWIDFLAGS)
+			$(CC) src/gradResidue.c src/grad.* src/mat_utils.* -o bin/gradResidue $(CFLAGS) $(LIKWIDFLAGS)
 
 clean:
 	        rm -rf bin
