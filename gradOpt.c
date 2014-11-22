@@ -1,5 +1,7 @@
 #include "grad.h"
 
+#define min(X, Y) (((X) < (Y)) ? (X) : (Y))
+
 /**
  * @file grad.c
  * @brief Funções criadas para a resolução do trabalho
@@ -46,7 +48,7 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
         prev_norm = norm;
     }
 
-    *timeGrad /= i;
+    *timeGrad /= it;
 
     free(r);
     return norm;
@@ -64,7 +66,7 @@ void calcGrad(double *A, double *x, double *r, int n){
     double iaux;
     iaux = lambda(A,r,n);
     for (int i = 0; i < n; ++i)
-        x[i] = x[i] + iaux * r[i];
+        x[i] += iaux * r[i];
 }
 
 /**
@@ -77,7 +79,8 @@ void calcGrad(double *A, double *x, double *r, int n){
 double lambda(double *A, double *r, int n){
     double iaux, *aux = (double *)malloc(n*sizeof(double));
     multMat(A, r, aux, n);
-    iaux = multVet(r, r, n)/multVet(r, aux, n);
+    iaux = 1/multVet(r, aux, n);
+    iaux *= multVet(r, r, n);
     free(aux);
     return iaux;
 }
@@ -106,9 +109,11 @@ double residualNorm(double *r, int n) {
  */
 void residue(double *A, double *b, double *x, double *r, int n) {
     for (int i=0; i<n; ++i) {
-        r[i] = b[i];
-        for (int j=0; j<n; ++j) {
-            r[i] -= A[i*n+j]*x[j];
+        for (int k=i; k<min(n,i+8); ++k){
+            r[k] = b[k];
+            for (int j=0; j<n; ++j) {
+                r[k] -= A[k*n+j]*x[j];
+            }
         }
     }
 }
@@ -129,10 +134,12 @@ double multVet(double *v, double *r, int n) {
 }
 
 void multMat(double *A, double *v, double *result, int n) {
-    for (int i=0; i<n; ++i){
-        result[i] = 0.0;
-        for (int j=0; j<n; ++j){
-            result[i] += v[j]*A[i*n+j];
+    for (int i=0; i<n-8; i+=8){
+        for (int k=i; k<min(n,i+8); ++k){
+            result[k] = 0.0;
+            for (int j=0; j<n; ++j){
+                result[k] += v[j]*A[k*n+j];
+            }
         }
     }
 }

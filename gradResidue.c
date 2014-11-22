@@ -1,4 +1,5 @@
 #include "grad.h"
+#include <likwid.h>
 
 /**
  * @file grad.c
@@ -34,7 +35,7 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
     prev_norm = residualNorm(r, n);
 
     double relErr = e + 1.0;
-    while ((fabs(relErr) > e) && (i++<it)){
+    // while ((fabs(relErr) > e) && (i++<it)){
         *timeGrad -= timestamp();
         calcGrad(A, x, r, n);
         *timeGrad += timestamp();
@@ -44,7 +45,7 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
         norm = residualNorm(r, n);
         relErr = norm - prev_norm;
         prev_norm = norm;
-    }
+    // }
 
     *timeGrad /= i;
 
@@ -105,12 +106,18 @@ double residualNorm(double *r, int n) {
  * @param n Dimensão da matriz.
  */
 void residue(double *A, double *b, double *x, double *r, int n) {
+    likwid_markerInit();
+    likwid_markerStartRegion("Compute");
+
     for (int i=0; i<n; ++i) {
         r[i] = b[i];
         for (int j=0; j<n; ++j) {
             r[i] -= A[i*n+j]*x[j];
         }
     }
+
+    likwid_markerStopRegion("Compute");
+    likwid_markerClose();
 }
 
 /**
