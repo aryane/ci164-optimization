@@ -5,6 +5,7 @@
 \usepackage[lighttt]{lmodern} \usepackage[top=1.4in, bottom=1in, left=1in,
 right=1in]{geometry} \usepackage{graphicx} % para adicionar imagem
 \usepackage{listings} \usepackage{amsmath} \usepackage{indentfirst}
+\usepackage{multicol}
 
 \begin{document}
 
@@ -64,58 +65,70 @@ Utilizando a ferramenta likwid-topology, é possível obter as seguintes
 informações sobre a arquitetura do computador utilizado para os testes de
 performance.
 
-\begin{figure}[ht]
-\begin{tt}\noindent
-CPU type:   AMD Interlagos processor \\
-\\
+\begin{figure}[ht]\footnotesize
+\begin{tt}
+\begin{multicols}{2}
+CPU type:	AMD Magny Cours processor\\
 Hardware Thread Topology\\
-Sockets:    1 \\
-Cores per socket:   6 \\
-Threads per core:   1 \\
-HWThread    Thread      Core        Socket\\
-0       0       0       0\\
-1       0       1       0\\
-2       0       2       0\\
-3       0       3       0\\
-4       0       4       0\\
-5       0       5       0\\
-Socket 0: ( 0 1 2 3 4 5 )\\
-\\
-Cache Topology\\
-Level:  1\\
-Size:   16 kB\\
-Cache groups:   ( 0 ) ( 1 ) ( 2 ) ( 3 ) ( 4 ) ( 5 )\\
-Level:  2\\
-Size:   2 MB\\
-Cache groups:   ( 0 1 ) ( 2 3 ) ( 4 5 )\\
-Level:  3\\
-Size:   8 MB\\
-Cache groups:   ( 0 1 2 3 4 5 )\\
-\\
+Sockets:	4\\
+Cores per socket:	8\\
+Threads per core:	1\\
+Socket 0: ( 0 1 2 3 4 5 6 7 )\\
 NUMA Topology\\
-NUMA domains: 1 \\
+NUMA domains: 2\\
 Domain 0:\\
-Processors:  0 1 2 3 4 5\\
-Relative distance to nodes:  10\\
-Memory: 152.301 MB free of total 3678.97 MB\\
-\end{tt}\caption{Saída do likwid-topology}\label{fig:topologyOut}
+Processors:  0 1 2 3 4 5 12 13 14 15 16 17\\
+Relative distance to nodes:  10 21\\
+Memory: 2403.31 MB free of total 24103.8 MB\\
+\end{multicols}
+\begin{multicols}{3}
+Cache Topology\\
+Level:	1\\
+Size:	64 kB\\
+Type:	Data cache\\
+Associativity:	2\\
+Number of sets:	512\\
+Cache line size:64\\
+Non Inclusive cache\\
+Shared among 1 threads\\
+Level:	2\\
+Size:	512 kB\\
+Type:	Unified cache\\
+Associativity:	16\\
+Number of sets:	512\\
+Cache line size:64\\
+Non Inclusive cache\\\
+Shared among 1 threads\\
+\\
+Level:	3\\
+Size:	5 MB\\
+Type:	Unified cache\\
+Associativity:	96\\
+Number of sets:	512\\
+Cache line size:64\\
+Non Inclusive cache\\
+Shared among 4 threads\\
+\end{multicols}\caption{Saída do likwid-topology}\label{fig:topologyOut}
+\end{tt}
 \end{figure}
 
 Como pode-se notar na figura~\ref{fig:topologyOut}, nas servidoras do DInf, há
 uma CPU Magny Cours, fabricada pela AMD, com 4 socket e 32 cores (8 por socket).
 
 Existem 3 níveis de cache, sendo o primeiro (L1) com 16kB de memória, o segundo
-(L2) com 512kB e o terceiro (L3) com 5MB. As caches L1 e L2 são separadas em 32 grupos, sendo
-que cada grupo é destinado a um core diferente, e o último nível de cache, L3, é
-separado em 8 grupos, cada grupo destinado a 4 cores.
+(L2) com 512kB e o terceiro (L3) com 5MB. As caches L1 e L2 são separadas em 32
+grupos, sendo que cada grupo é destinado a um core diferente, e o último nível
+de cache, L3, é separado em 8 grupos, cada grupo destinado a 4 cores.
 
-Há 8 domínios NUMA, e cada domínio correspondendo a uma cache L3. Como apenas o Socket 0 será
-usado, apenas o primeiro domínio NUMA é de interesse para análise de memória disponivel. O 
-domínio 0 possui 16047.3MB de memória RAM, e no momento de execução do likwid-topology,
-havia 10269.2MB de memória livre.
+Há 8 domínios NUMA, e cada domínio correspondendo a uma cache L3. Como apenas o
+Socket 0 será usado, apenas o primeiro domínio NUMA é de interesse para análise
+de memória disponivel. O domínio 0 possui 16047.3MB de memória RAM, e no momento
+de execução do likwid-topology, havia 10269.2MB de memória livre.
 
 Dada a especificação acima, o maior sistema linear passível de ser resolvido
-pela arquitetura descrita é ... , por motivos.
+pela arquitetura descrita é aproximadamente 36600, pois, dada a memória RAM
+disponível, e sabendo que o programa aloca $n^2 + 3n$ doubles, temos que $64(n^2 +
+3n) = 10269.2\times2^{23}$.
 
 \section{Comparação de desempenho geral}\label{sec:desempenhoGeral}
 
