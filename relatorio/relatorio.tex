@@ -74,12 +74,14 @@ Sockets:	4\\
 Cores per socket:	8\\
 Threads per core:	1\\
 Socket 0: ( 0 1 2 3 4 5 6 7 )\\
+\\
+\\
 NUMA Topology\\
 NUMA domains: 2\\
 Domain 0:\\
-Processors:  0 1 2 3 4 5 12 13 14 15 16 17\\
-Relative distance to nodes:  10 21\\
-Memory: 2403.31 MB free of total 24103.8 MB\\
+Processors: 0 1 2 3 4 5 12 13 14 15 16 17\\
+Relative distance to nodes: 10 21\\
+Memory: 2403.31MB free of total 24103.8MB\\
 \end{multicols}
 \begin{multicols}{3}
 Cache Topology\\
@@ -108,14 +110,14 @@ Number of sets:	512\\
 Cache line size:64\\
 Non Inclusive cache\\
 Shared among 4 threads\\
-\end{multicols}\caption{Saída do likwid-topology}\label{fig:topologyOut}
+\end{multicols}\caption{Saída resumida do likwid-topology}\label{fig:topologyOut}
 \end{tt}
 \end{figure}
 
 Como pode-se notar na figura~\ref{fig:topologyOut}, nas servidoras do DInf, há
 uma CPU Magny Cours, fabricada pela AMD, com 4 socket e 32 cores (8 por socket).
 
-Existem 3 níveis de cache, sendo o primeiro (L1) com 16kB de memória, o segundo
+Existem 3 níveis de cache, sendo o primeiro (L1) com 64kB de memória, o segundo
 (L2) com 512kB e o terceiro (L3) com 5MB. As caches L1 e L2 são separadas em 32
 grupos, sendo que cada grupo é destinado a um core diferente, e o último nível
 de cache, L3, é separado em 8 grupos, cada grupo destinado a 4 cores.
@@ -139,61 +141,99 @@ as caches continuam sendo compartilhadas, o que é possível notar na figura
 problema, pois é necessário minimizar o uso de cache pelos outros programas. A
 solução encontrada foi executar o gradSolver em single user mode.
 
-No gráfico~\ref{fig:execucao}, é mostrado os tempos de execução em segundos, que
-foram obtidos com a função timestamp, para matrizes de dimensões 32, 33, 256,
-257, 1024, 1025, 2048 e 2049. O eixo x está em escala logarítmica.
+No gráfico~\ref{fig:execucao}, são mostrados os tempos de execução em segundos,
+que foram obtidos com a função timestamp, para matrizes de dimensões 32, 256,
+1024 e 2048. Na escala horizontal do gráfico, as diferenças entre as potências
+de 2 e $2^n+1$ não aparecem claramente. O eixo das abcissas está em escala
+logarítmica.
 
-Pode-se notar que na escala do gráfico, as diferenças de tempo de execução entre
-os pares de dimensões 32 e 33, 256 e 257, 1024 e 1025, e finalmente 2048 e 2049
-são desprezíveis. As execuções do gradSolver com matrizes de dimensões que não
-são potência de 2 são ligeiramente melhores, por causa da associatividade da
-cache. Uma melhor visualização dos tempos de execução pode ser observada na
-tabela~\ref{fig:tabelaExecucoes}.
+Em teoria, as execuções do gradSolver com matrizes de dimensões que não são
+potência de 2 seriam ligeiramente melhores, por causa de um melhor uso da
+associatividade da cache. Porém, isso não pode ser verificado nas execuções para
+os tamanhos de cache exibidos acima. Já para matrizes de dimensões maiores, que
+fogem ao escopo do trabalho, com a arquitetura utilizada, a partir de x é
+possível verificar uma queda no desempenho medido em segundos para matrizes de
+dimensão potência de $2$ em relacao às outras.  Uma melhor visualização dos
+tempos de execução pode ser observado na tabela~\ref{fig:tabelaExecucoes}.
 
 \begin{figure}[htb]
 \begin{tt}\noindent
-    32      0.00001764297485352\\
-    33      0.00001815387180873\\
-    256     0.00094001633780343\\
-    257     0.00092514355977376\\
-    1024    0.01497772761753627\\
-    2048    0.05953870500837054\\
-    2049    0.05932899883815220\\
+    32 0.00014233589172363\\
+    33 0.00027585029602051\\
+    256 0.00672078132629395\\
+    257 0.00610208511352539\\
+    1024 0.10956859588623047\\
+    1025 0.10990786552429199\\
+    2048 0.43970751762390137\\
+    2049 0.43948912620544434\\
 \end{tt}\caption{Tempo de execução por dimensão da matriz}\label{fig:tabelaExecucoes}
 \end{figure}
 
 \begin{figure}[htb] \begin{center}
-\includegraphics[width=150mm]{execucoes.jpg} \end{center}
+\includegraphics[width=100mm]{img/execucoes.jpg} \end{center}
 \caption{Tempo de execução por dimensão da matriz}\label{fig:execucao}
 \end{figure}
 
-\section{Análise do cálculo do fator lambda}\label{sec:lambda}
-\subsection{flop operations}
+\section{Análise dos cálculos do fator lambda e resíduo}\label{sec:lambdaResiduo}
 
-Na função multMat, há dois flop's dentro de dois laços, portanto, em função de
-n, há 2n² flop.  Na função multVet, há dois flop's dentro de um laço, então a
-função é 2n. Como a função lambda usa duas vezes a função multVet e uma vez a
-função multMat, flops em função de n é, aproximadamente, f(n) = 2n² + 4n,
-dependendo dos programas executados em paralelo.
+\subsection{Medidas de operações em ponto flutuante, memória utilizada e cache
+misses}\label{sec:FlopsMemCache}
 
-\subsection{mem utilization}
+Utilizando a ferramenta likwid-perfctr, foi possível obter informações nos
+trechos de código referentes ao cálculo do fator lambda e do resíduo sobre
+memória, cache e operações em ponto flutuante de dupla precisão.
 
-No gráfico~\ref{fig:memLambda}, vê-se que a uso de memória aumenta em função de
-N. Na função lambda, é usada uma vez a função multMat e duas vezes a função
-multVet, e sabendo que a função multMat tem 3n² (dois laços com 3 acessos
-dentro deles) acessos à memória e a função multVet tem 2n (um laço com dois
-acessos) acessos à memória. Sendo assim, a função de acesso à memória é
-aproximadamente f(n) = 3n² + 4n, sem contar os imprevistos que podem vir a
-occorrer durante a execução do programa, como acessos feitos por programas
-paralelos.
+Nos gráficos, nas figuras~\ref{fig:cacheMiss}, ~\ref{fig:usoMem} e
+~\ref{fig:flops}, podem ser observadas as taxas de cache miss, MBytes/s e
+MFlops/s, respectivamente, de uma iteração do cálculo de lambda, cálculo do
+resíduo e as versões de lambda e resíduo com compilação otimizada com -O3 em
+relação às dimensões da matriz.
 
-\subsection{explicar graficos flops\_dp, cache, mem}
-\subsection{melhoria}
+\begin{figure}[htb] \begin{center}
+\includegraphics[width=100mm]{img/cacheMiss.jpg} \end{center}
+\caption{Taxa de cache miss por dimensão da matriz}\label{fig:cacheMiss}
+\end{figure}
 
-\section{Análise do cálculo do resíduo}\label{sec:residuo}
-\subsection{flop operations}
-\subsection{mem utilization}
-\subsection{explicar graficos flops\_dp, cache, mem}
-\subsection{melhoria}
+Faz sentido que o gráfico na figura~\ref{fig:cacheMiss} mostre que a taxa de
+cache miss aumentou na compilação otimizada, pois.
 
+\begin{figure}[htb] \begin{center}
+\includegraphics[width=100mm]{img/memUse.jpg} \end{center}
+\caption{Uso de memória em MBytes/s por dimensão da matriz}\label{fig:usoMem}
+\end{figure}
+
+De maneira análoga, o uso de memória aumenta nas versões otimizadas, pois...
+
+\begin{figure}[htb] \begin{center}
+\includegraphics[width=100mm]{img/flops.jpg} \end{center}
+\caption{MFlops/s por dimensão da matriz}\label{fig:flops}
+\end{figure}
+
+
+Também...
+
+
+
+%\subsection{Total de operação em ponto flutuante de dupla
+%precisão}\label{sec:flopOp}
+%
+%Na função multMat, há dois flop's dentro de dois laços, portanto, em função de
+%n, há $2n^2$ flop.  Na função multVet, há dois flop's dentro de um laço, então a
+%função é 2n. Como a função lambda usa duas vezes a função multVet e uma vez a
+%função multMat, flops em função de n é, aproximadamente, f(n) = $2n^2 + 4n$,
+%dependendo dos programas executados em paralelo.
+%
+%\subsection{Utilização de memória}\label{sec:utilizacaoMemoria}
+%
+%No gráfico ref , vê-se que a uso de memória aumenta em função de
+%N. Na função lambda, é usada uma vez a função multMat e duas vezes a função
+%multVet, e sabendo que a função multMat tem $3n^2$ (dois laços com 3 acessos
+%dentro deles) acessos à memória e a função multVet tem 2n (um laço com dois
+%acessos) acessos à memória. Sendo assim, a função de acesso à memória é
+%aproximadamente f(n) = $3n^2$ + 4n, sem contar os imprevistos que podem vir a
+%occorrer durante a execução do programa, como acessos feitos por programas
+%paralelos.
+%
+%\subsection{Otimização: Loop blocking}
+%
 \end{document}
