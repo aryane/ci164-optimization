@@ -3,7 +3,7 @@
 export LANG=C
 export LC_ALL=C
 
-rm -f flops${1}.dat
+rm -f ../flops${1}.dat
 for i in 256 257 1024 1025 2048 2049; do
    likwid-perfctr -C S0:0 -g FLOPS_DP ../../bin/grad$1 -r $i |\
    sed -e "s:|::g" -e "s:  : :g" |  awk -v NNN=${i} '

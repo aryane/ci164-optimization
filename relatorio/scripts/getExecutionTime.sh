@@ -1,6 +1,6 @@
 #!/bin/bash
 
-rm -f execTime$1.dat
+rm -f execTime${1}.dat
 for i in 32 33 256 257 1024 1025 2048 2049; do
     rm -f exec$i
     for ((j=0; j<10; j++)); do
