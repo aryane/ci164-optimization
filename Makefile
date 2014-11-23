@@ -1,5 +1,5 @@
 CC = gcc
-CFLAGS = -std=c99 -Wall -lm
+CFLAGS = -O3 -std=c99 -Wall -lm
 LIKWIDFLAGS = -pthread -DLIKWID_PERFMON -L/usr/local/lib -llikwid
 
 all:
