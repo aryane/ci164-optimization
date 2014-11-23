@@ -64,6 +64,7 @@ int main(int argc, char **argv) {
 
     multMat(A, r, aux, n);
     iaux = multVet(r, r, n)/multVet(r, aux, n);
+    iaux += 1;
 
     likwid_markerStopRegion("Compute");
     likwid_markerClose();
