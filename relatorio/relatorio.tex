@@ -209,15 +209,31 @@ De maneira análoga, o uso de memória aumenta nas versões otimizadas, pois...
 
 Também...
 
-%\subsection{Total de operação em ponto flutuante de dupla
-%precisão}\label{sec:flopOp}
-%
-%Na função multMat, há dois flop's dentro de dois laços, portanto, em função de
-%n, há $2n^2$ flop.  Na função multVet, há dois flop's dentro de um laço, então a
-%função é 2n. Como a função lambda usa duas vezes a função multVet e uma vez a
-%função multMat, flops em função de n é, aproximadamente, f(n) = $2n^2 + 4n$,
-%dependendo dos programas executados em paralelo.
-%
+\subsection{Total de operação em ponto flutuante de dupla
+precisão}\label{sec:flopOp}
+
+Na função multMat, há duas operações em ponto flutuante dentro de dois
+aninhados, e as duas operações são uma soma e multiplicação juntas, de forma que
+é possível que se conte apenas uma operação. Na função multVet, há duas
+operações de doubles dentro de apenas um laço. Como a função lambda usa duas
+vezes a função multVet e uma vez a função multMat, flops em função de n é,
+aproximadamente, f(n) = $n^2 + 2n$, o que pode variar com a otimização do
+compilador.
+
+Para obter os valores a partir do likwid, se usa likwid-perfctr medindo o grupo
+FLOPS\_DP, pega-se o valor em MFlops/s, multiplica-se pelo tempo em segundos, no
+caso o Runtime unhalted, e por $2^{20}$ e aí se obtém o total absoluto de flops.
+
+Não foi possível fazer um casamento da complexidade em função da dimensão da
+matriz com a conta que se faz com os valores do likwid, pois saída do
+likwid-perfctr para FLOPS\_DP sofre muitas variações. Aí seria necessário ler a
+documentação da ferramenta  para descobrir se o programa pega os valores por
+amostragem de código em execução. Se isso for assumido, os valores ficam mais
+próximos aos reais a partir de uma amostragem de código maior, e no caso
+apresentado, somente é levado em consideração uma iteração do cálculo do lambda.
+
+A mesma coisa vale para o cálculo do resíduo, que tem complexidade quadrática.
+
 %\subsection{Utilização de memória}\label{sec:utilizacaoMemoria}
 %
 %No gráfico ref , vê-se que a uso de memória aumenta em função de
