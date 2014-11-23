@@ -1,6 +1,6 @@
 #!/bin/bash
 
-#set -x
+# set -x
 
 if [ $# -lt 2 ] ; then
    echo -e "\n\t$0 -p|-f|-l|-x|-j -t TITULO arquivo.dat\n\tARGS: $*\n"
@@ -52,13 +52,13 @@ for P in "$@" ; do      # while true
             ;;
 
        *)  # input files
-            #inp[$idx]="$1"
+            inp[$idx]="$1"
 		echo $1 $2
-            inp="$1"
-            #label="$(echo $1 | sed -e 's:_:-:g')"
-            #lbl[$idx]="$label"
-            #idx=$((idx+1))
-	    break
+            #inp="$1"
+            label="$(echo $1 | sed -e 's:_:-:g' -e 's:.dat::')"
+            lbl[$idx]="$label"
+            idx=$((idx+1))
+	    # break
             ;;
     esac
 
@@ -77,7 +77,11 @@ else
 fi
 
 if [ "x$XRANGE" = "x" ] ; then
-  XRANGE="[16:4096]"        ## ELSE usa variavel do ambiente
+  XRANGE="[128:4096]"        ## ELSE usa variavel do ambiente
+fi
+
+if [ "x$YRANGE" = "x" ] ; then
+  YRANGE="[6000:17000000]"        ## ELSE usa variavel do ambiente
 fi
 
 cat <<EOF0 | gnuplot
@@ -91,8 +95,8 @@ set logscale x
 #set xtics nomirror ("16" 16, "32" 32, "64" 64, "128" 128, "256" 256)
 set ytics nomirror ; set tics in ; set nogrid
 set xrange $XRANGE
-set yrange [0:0.4]
-set ylabel "Tempo de execucao em segundos"
+set yrange $YRANGE
+set ylabel "FLOPS_DP"
 set lmargin $lmargin
 set border 3 lw 0  ; set ytics nomirror
 set pointsize $ptSZ
@@ -101,7 +105,9 @@ set term $outTerm
 set output "$outFile"
 set key top left      # {top,mid,bottom} {left,center,right}
 set size 1.0,1.0
-plot "${inp}" using 1:2 title "dimensoes" with linesp lt 1 pt 5
+plot \
+         "${inp[0]}" us 1:2 tit "${lbl[0]}" w li lt 2 lw 1 lc rgb "red",\
+         "${inp[1]}" us 1:2 tit "${lbl[1]}" w li lt 3 lw 1 lc rgb "black"
 EOF0
 
 # plot \
@@ -112,3 +118,4 @@ EOF0
 # "${inp[4]}-4-1.cr" us 7:8 tit "${lbl[4]}" w li lt 5,\
 # "${inp[5]}-4-1.cr" us 7:8 tit "${lbl[5]}" w li lt 4,\
 # "${inp[6]}-4-1.cr" us 7:8 tit "${lbl[6]}" w li lt 9
+
