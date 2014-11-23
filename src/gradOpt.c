@@ -132,7 +132,7 @@ double multVet(double *v, double *r, int n) {
 }
 
 void multMat(double *A, double *v, double *result, int n) {
-    for (int i=0; i<n-8; i+=8){
+    for (int i=0; i<n; i+=8){
         for (int k=i; k<min(n,i+8); ++k){
             result[k] = 0.0;
             for (int j=0; j<n; ++j){
