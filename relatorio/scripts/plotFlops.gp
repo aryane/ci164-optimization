@@ -97,7 +97,7 @@ set logscale x
 set ytics nomirror ; set tics in ; set nogrid
 set xrange $XRANGE
 set yrange $YRANGE
-set ylabel "FLOPS_DP"
+set ylabel "MFflops/s"
 set lmargin $lmargin
 set border 3 lw 0  ; set ytics nomirror
 set pointsize $ptSZ
