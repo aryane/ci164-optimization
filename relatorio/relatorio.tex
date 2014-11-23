@@ -170,19 +170,22 @@ tabela~\ref{fig:tabelaExecucoes}.
 \section{Análise do cálculo do fator lambda}\label{sec:lambda}
 \subsection{flop operations}
 
-Na função multMat, há dois flop's dentro de dois laços, portanto, em função de n, há 2n² flop. 
-Na função multVet, há dois flop's dentro de um laço, então a função é 2n. Como a função lambda 
-usa duas vezes a função multVet e uma vez a função multMat, flops em função de n é, aproximadamente, 
-f(n) = 2n² + 4n, dependendo dos programas executados em paralelo.
+Na função multMat, há dois flop's dentro de dois laços, portanto, em função de
+n, há 2n² flop.  Na função multVet, há dois flop's dentro de um laço, então a
+função é 2n. Como a função lambda usa duas vezes a função multVet e uma vez a
+função multMat, flops em função de n é, aproximadamente, f(n) = 2n² + 4n,
+dependendo dos programas executados em paralelo.
 
 \subsection{mem utilization}
 
-No gráfico~\ref{fig:memLambda}, vê-se que a uso de memória aumenta em função de N. Na função 
-lambda, é usada uma vez a função multMat e duas vezes a função multVet, e sabendo que a 
-função multMat tem 3n² (dois laços com 3 acessos dentro deles) acessos à memória e a função 
-multVet tem 2n (um laço com dois acessos) acessos à memória. Sendo assim, a função de 
-acesso à memória é aproximadamente f(n) = 3n² + 4n, sem contar os imprevistos que podem 
-vir a occorrer durante a execução do programa, como acessos feitos por programas paralelos.
+No gráfico~\ref{fig:memLambda}, vê-se que a uso de memória aumenta em função de
+N. Na função lambda, é usada uma vez a função multMat e duas vezes a função
+multVet, e sabendo que a função multMat tem 3n² (dois laços com 3 acessos
+dentro deles) acessos à memória e a função multVet tem 2n (um laço com dois
+acessos) acessos à memória. Sendo assim, a função de acesso à memória é
+aproximadamente f(n) = 3n² + 4n, sem contar os imprevistos que podem vir a
+occorrer durante a execução do programa, como acessos feitos por programas
+paralelos.
 
 \subsection{explicar graficos flops\_dp, cache, mem}
 \subsection{melhoria}
