@@ -5,6 +5,7 @@
 \usepackage[lighttt]{lmodern} \usepackage[top=1.4in, bottom=1in, left=1in,
 right=1in]{geometry} \usepackage{graphicx} % para adicionar imagem
 \usepackage{listings} \usepackage{amsmath} \usepackage{indentfirst}
+\usepackage{multicol}
 
 \begin{document}
 
@@ -64,97 +65,51 @@ Utilizando a ferramenta likwid-topology, é possível obter as seguintes
 informações sobre a arquitetura do computador utilizado para os testes de
 performance.
 
-<<<<<<< HEAD
 \begin{figure}[ht]\footnotesize
-\begin{verbatim}
-CPU type:	AMD Magny Cours processor
-Hardware Thread Topology
-Sockets:	4 
-Cores per socket:	8 
-Threads per core:	1 
-Socket 0: ( 0 1 2 3 4 5 6 7 )
-Socket 1: ( 8 9 10 11 12 13 14 15 )
-Socket 2: ( 16 17 18 19 20 21 22 23 )
-Socket 3: ( 24 25 26 27 28 29 30 31 )
-Cache Topology
-Level:	1
-Size:	64 kB
-Cache groups:	( 0 ) ( 1 ) ( 2 ) ( 3 ) ( 4 ) ( 5 ) ( 6 ) ( 7 ) ( 8 ) ( 9 ) ( 10 ) ( 11 ) ( 12 ) ( 13 ) ( 14 ) ( 15 ) ( 16 ) ( 17 ) ( 18 ) ( 19 ) ( 20 ) ( 21 ) ( 22 ) ( 23 ) ( 24 ) ( 25 ) ( 26 ) ( 27 ) ( 28 ) ( 29 ) ( 30 ) ( 31 )
-Level:	2
-Size:	512 kB
-Cache groups:	( 0 ) ( 1 ) ( 2 ) ( 3 ) ( 4 ) ( 5 ) ( 6 ) ( 7 ) ( 8 ) ( 9 ) ( 10 ) ( 11 ) ( 12 ) ( 13 ) ( 14 ) ( 15 ) ( 16 ) ( 17 ) ( 18 ) ( 19 ) ( 20 ) ( 21 ) ( 22 ) ( 23 ) ( 24 ) ( 25 ) ( 26 ) ( 27 ) ( 28 ) ( 29 ) ( 30 ) ( 31 )
-Level:	3
-Size:	5 MB
-Cache groups:	( 0 1 2 3 ) ( 4 5 6 7 ) ( 8 9 10 11 ) ( 12 13 14 15 ) ( 16 17 18 19 ) ( 20 21 22 23 ) ( 24 25 26 27 ) ( 28 29 30 31 )
-NUMA Topology
-NUMA domains: 8 
-Domain 0:
-Processors:  0 1 2 3
-Relative distance to nodes:  10 16 16 22 16 22 16 22
-Memory: 10269.2 MB free of total 16047.3 MB
-Cache Topology
-Level:	1
-Size:	64 kB
-Type:	Data cache
-Associativity:	2
-Number of sets:	512
-Cache line size:64
-Non Inclusive cache
-Shared among 1 threads
-Level:	2
-Size:	512 kB
-Type:	Unified cache
-Associativity:	16
-Number of sets:	512
-Cache line size:64
-Non Inclusive cache\
-Shared among 1 threads
-Level:	3
-Size:	5 MB
-Type:	Unified cache
-Associativity:	96
-Number of sets:	512
-Cache line size:64
-Non Inclusive cache
-Shared among 4 threads
-\end{verbatim}\caption{Saída do likwid-topology}\label{fig:topologyOut}
-=======
-\begin{figure}[ht]
-\begin{tt}\noindent
-CPU type:   AMD Interlagos processor \\
-\\
+\begin{tt}
+\begin{multicols}{2}
+CPU type:	AMD Magny Cours processor\\
 Hardware Thread Topology\\
-Sockets:    1 \\
-Cores per socket:   6 \\
-Threads per core:   1 \\
-HWThread    Thread      Core        Socket\\
-0       0       0       0\\
-1       0       1       0\\
-2       0       2       0\\
-3       0       3       0\\
-4       0       4       0\\
-5       0       5       0\\
-Socket 0: ( 0 1 2 3 4 5 )\\
-\\
-Cache Topology\\
-Level:  1\\
-Size:   16 kB\\
-Cache groups:   ( 0 ) ( 1 ) ( 2 ) ( 3 ) ( 4 ) ( 5 )\\
-Level:  2\\
-Size:   2 MB\\
-Cache groups:   ( 0 1 ) ( 2 3 ) ( 4 5 )\\
-Level:  3\\
-Size:   8 MB\\
-Cache groups:   ( 0 1 2 3 4 5 )\\
-\\
+Sockets:	4\\
+Cores per socket:	8\\
+Threads per core:	1\\
+Socket 0: ( 0 1 2 3 4 5 6 7 )\\
 NUMA Topology\\
-NUMA domains: 1 \\
+NUMA domains: 2\\
 Domain 0:\\
-Processors:  0 1 2 3 4 5\\
-Relative distance to nodes:  10\\
-Memory: 152.301 MB free of total 3678.97 MB\\
-\end{tt}\caption{Saída do likwid-topology}\label{fig:topologyOut}
->>>>>>> e1f6bd930ae8e297d3d430aef9a5ab646f6d5b07
+Processors:  0 1 2 3 4 5 12 13 14 15 16 17\\
+Relative distance to nodes:  10 21\\
+Memory: 2403.31 MB free of total 24103.8 MB\\
+\end{multicols}
+\begin{multicols}{3}
+Cache Topology\\
+Level:	1\\
+Size:	64 kB\\
+Type:	Data cache\\
+Associativity:	2\\
+Number of sets:	512\\
+Cache line size:64\\
+Non Inclusive cache\\
+Shared among 1 threads\\
+Level:	2\\
+Size:	512 kB\\
+Type:	Unified cache\\
+Associativity:	16\\
+Number of sets:	512\\
+Cache line size:64\\
+Non Inclusive cache\\\
+Shared among 1 threads\\
+\\
+Level:	3\\
+Size:	5 MB\\
+Type:	Unified cache\\
+Associativity:	96\\
+Number of sets:	512\\
+Cache line size:64\\
+Non Inclusive cache\\
+Shared among 4 threads\\
+\end{multicols}\caption{Saída do likwid-topology}\label{fig:topologyOut}
+\end{tt}
 \end{figure}
 
 Como pode-se notar na figura~\ref{fig:topologyOut}, nas servidoras do DInf, há
