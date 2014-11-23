@@ -46,7 +46,7 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
         prev_norm = norm;
     }
 
-    *timeGrad /= i;
+    //*timeGrad /= i;
 
     free(r);
     return norm;
