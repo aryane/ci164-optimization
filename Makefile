@@ -22,4 +22,4 @@ residue_opt:
 			$(CC) src/gradResidueOpt.c src/gradOpt.c src/grad.h src/mat_utils.* -o bin/gradResidue $(CFLAGS) $(LIKWIDFLAGS)
 
 clean:
-	        rm -rf bin
+	        rm -rf bin/*
