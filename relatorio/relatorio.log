@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.6)  23 NOV 2014 12:42
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.7.28)  23 NOV 2014 17:27
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **relatorio.tex
 (./relatorio.tex
 LaTeX2e <2011/06/27>
-Babel <3.9f> and hyphenation patterns for 78 languages loaded.
+Babel <3.9h> and hyphenation patterns for 78 languages loaded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -24,13 +24,13 @@ File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \bibindent=\dimen102
 )
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2013/05/16 v3.9f The Babel package
+Package: babel 2013/12/03 3.9h The Babel package
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel-portuges/portuges.ldf
 Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2013/05/16 v3.9f Babel common definitions
+File: babel.def 2013/12/03 3.9h Babel common definitions
 \babel@savecnt=\count87
 \U@D=\dimen103
 )
@@ -370,15 +370,15 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \lst@maxwidth=\dimen117
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2013/07/10 1.5 (Carsten Heinz)
+File: lstmisc.sty 2013/08/26 1.5b (Carsten Heinz)
 \c@lstnumber=\count98
 \lst@skipnumbers=\count99
 \lst@framebox=\box27
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2013/06/27 1.5pre1 listings configuration
+File: listings.cfg 2013/08/26 1.5b listings configuration
 ))
-Package: listings 2013/07/10 1.5 (Carsten Heinz)
+Package: listings 2013/08/26 1.5b (Carsten Heinz)
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
 Package: amsmath 2013/01/14 v2.14 AMS math features
@@ -646,56 +646,80 @@ LaTeX Font Info:    Try loading font information for T1+lmtt on input line 39.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 71--83
-\T1/lmtt/m/n/10 Memory: 2403.31 MB free of total 24103.8
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 71--83
+Underfull \hbox (badness 10000) in paragraph at lines 71--85
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--111
+Underfull \hbox (badness 10000) in paragraph at lines 71--85
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 85--111
+Underfull \hbox (badness 10000) in paragraph at lines 71--85
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--113
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 87--113
 
  []
 
 [2] [3]
-Underfull \hbox (badness 10000) in paragraph at lines 154--162
+Underfull \hbox (badness 10000) in paragraph at lines 160--169
 
  []
 
-<execucoes.jpg, id=20, 481.8pt x 361.35pt>
-File: execucoes.jpg Graphic file (type jpg)
- <use execucoes.jpg>
-Package pdftex.def Info: execucoes.jpg used on input line 166.
-(pdftex.def)             Requested size: 426.79134pt x 320.10075pt.
- [4] [5 <./execucoes.jpg>] (./relatorio.aux) ) 
+<img/execucoes.jpg, id=21, 481.8pt x 361.35pt>
+File: img/execucoes.jpg Graphic file (type jpg)
+ <use img/execucoes.jpg>
+Package pdftex.def Info: img/execucoes.jpg used on input line 173.
+(pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
+ [4 <./img/execucoes.jpg>] <img/cacheMiss.jpg, id=25, 481.8pt x 361.35pt>
+File: img/cacheMiss.jpg Graphic file (type jpg)
+
+<use img/cacheMiss.jpg>
+Package pdftex.def Info: img/cacheMiss.jpg used on input line 193.
+(pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
+ <img/memUse.jpg, id=26, 481.8pt x 361.35pt>
+File: img/memUse.jpg Graphic file (type jpg)
+
+<use img/memUse.jpg>
+Package pdftex.def Info: img/memUse.jpg used on input line 201.
+(pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
+ <img/flops.jpg, id=27, 481.8pt x 361.35pt>
+File: img/flops.jpg Graphic file (type jpg)
+
+<use img/flops.jpg>
+Package pdftex.def Info: img/flops.jpg used on input line 208.
+(pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
+ [5 <./img/cacheMiss.jpg>] [6 <./img/memUse.jpg> <./img/flops.jpg>] (./relatori
+o.aux) ) 
 Here is how much of TeX's memory you used:
- 4999 strings out of 493307
- 67558 string characters out of 6139906
- 144271 words of memory out of 5000000
- 8350 multiletter control sequences out of 15000+600000
+ 5030 strings out of 493304
+ 68098 string characters out of 6139871
+ 144767 words of memory out of 5000000
+ 8380 multiletter control sequences out of 15000+600000
  51191 words of font info for 45 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,6n,32p,288b,268s stack positions out of 5000i,500n,10000p,200000b,80000s
-{/usr/share/texmf/fonts/enc/dvips
-/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{/usr/share/te
-xmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec
-.enc}</usr/share/texmf/fonts/type1/public/lm/lmbx12.pfb></usr/share/texmf/fonts
-/type1/public/lm/lmmi12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb><
-/usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/
-public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/sha
-re/texmf/fonts/type1/public/lm/lmtl10.pfb>
-Output written on relatorio.pdf (5 pages, 174192 bytes).
+{/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/share/texmf/fo
+nts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-rm.enc}{
+/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fonts/type1/pub
+lic/lm/lmbx12.pfb></usr/share/texmf/fonts/type1/public/lm/lmmi12.pfb></usr/shar
+e/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm
+/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/
+fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.p
+fb></usr/share/texmf/fonts/type1/public/lm/lmtl10.pfb>
+Output written on relatorio.pdf (6 pages, 304343 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 39 compressed objects within 1 object stream
+ 65 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

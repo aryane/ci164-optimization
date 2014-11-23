@@ -3,13 +3,5 @@
 \contentsline {section}{\numberline {2}Verifica\IeC {\c c}\IeC {\~a}o de uso de mem\IeC {\'o}ria com Valgrind}{2}
 \contentsline {section}{\numberline {3}Arquitetura do computador}{2}
 \contentsline {section}{\numberline {4}Compara\IeC {\c c}\IeC {\~a}o de desempenho geral}{3}
-\contentsline {section}{\numberline {5}An\IeC {\'a}lise do c\IeC {\'a}lculo do fator lambda}{4}
-\contentsline {subsection}{\numberline {5.1}flop operations}{4}
-\contentsline {subsection}{\numberline {5.2}mem utilization}{4}
-\contentsline {subsection}{\numberline {5.3}explicar graficos flops\_dp, cache, mem}{4}
-\contentsline {subsection}{\numberline {5.4}melhoria}{4}
-\contentsline {section}{\numberline {6}An\IeC {\'a}lise do c\IeC {\'a}lculo do res\IeC {\'\i }duo}{4}
-\contentsline {subsection}{\numberline {6.1}flop operations}{4}
-\contentsline {subsection}{\numberline {6.2}mem utilization}{4}
-\contentsline {subsection}{\numberline {6.3}explicar graficos flops\_dp, cache, mem}{4}
-\contentsline {subsection}{\numberline {6.4}melhoria}{4}
+\contentsline {section}{\numberline {5}An\IeC {\'a}lise dos c\IeC {\'a}lculos do fator lambda e res\IeC {\'\i }duo}{5}
+\contentsline {subsection}{\numberline {5.1}Medidas de opera\IeC {\c c}\IeC {\~o}es em ponto flutuante, mem\IeC {\'o}ria utilizada e cache misses}{5}
