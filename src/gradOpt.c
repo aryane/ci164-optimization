@@ -48,8 +48,6 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
         prev_norm = norm;
     }
 
-    *timeGrad /= it;
-
     free(r);
     return norm;
 }
