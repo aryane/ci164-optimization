@@ -15,7 +15,7 @@ int main(int argc, char **argv) {
     int index, c, n;
     double *A, *b, *r, iaux, *aux;
 
-    while ((c = getopt(argc, argv, "i:o:r:k:e:")) != -1) {
+    while ((c = getopt(argc, argv, "i:r:")) != -1) {
         switch (c) {
             case 'i':
                 ivalue = optarg;
@@ -67,6 +67,8 @@ int main(int argc, char **argv) {
 
     likwid_markerStopRegion("Compute");
     likwid_markerClose();
+    
+    iaux += 1;
 
     free(aux);
     free(A);

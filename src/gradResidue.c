@@ -13,9 +13,9 @@ int main(int argc, char **argv) {
     char *ivalue = NULL;
     char *rvalue = NULL;
     int index, c, n;
-    double *A, *b, *r, *x, iaux, *aux;
+    double *A, *b, *r, *x, *aux;
 
-    while ((c = getopt(argc, argv, "i:o:r:k:e:")) != -1) {
+    while ((c = getopt(argc, argv, "i:r:")) != -1) {
         switch (c) {
             case 'i':
                 ivalue = optarg;
