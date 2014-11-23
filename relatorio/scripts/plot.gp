@@ -41,7 +41,7 @@ for P in "$@" ; do      # while true
 #            ;;
 
         -j|-jpg|-jpeg)            # jpg
-            outTerm='jpeg large enhanced'
+            outTerm='jpeg large enhanced font arial 15'
             outSfx="jpg"
             sz="1.0,1.0"
             ;;
@@ -84,7 +84,8 @@ cat <<EOF0 | gnuplot
 set encoding iso_8859_1
 #set encoding utf8
 set xlabel "Dimensao da matriz"; set ylabel ""
-set title "$TITLE"
+#set title "$TITLE"
+set notitle
 set xtics ("32" 32, "256" 256, "1024" 1024, "2048" 2048) #, "4k" 4096, "8k" 8192, "16k" 16384, "32k" 32768)
 # set nozero
 set logscale x
@@ -103,6 +104,7 @@ set key top left      # {top,mid,bottom} {left,center,right}
 set size 1.0,1.0
 plot "${inp}" using 1:2 title "dimensoes" with linesp lt 1 pt 5
 EOF0
+mv $outFile ../img/
 
 # plot \
 #  "${inp[0]}-4-1.cr" us 7:8 tit "${lbl[0]}" w li lt 2 lw 2 lc rgb "red",\

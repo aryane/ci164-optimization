@@ -41,7 +41,7 @@ for P in "$@" ; do      # while true
 #            ;;
 
         -j|-jpg|-jpeg)            # jpg
-            outTerm='jpeg large enhanced'
+            outTerm='jpeg large enhanced font arial 15'
             outSfx="jpg"
             sz="1.0,1.0"
             ;;
@@ -81,14 +81,15 @@ if [ "x$XRANGE" = "x" ] ; then
 fi
 
 if [ "x$YRANGE" = "x" ] ; then
-  YRANGE="[4:1024]"        ## ELSE usa variavel do ambiente
+  YRANGE="[4:1300]"        ## ELSE usa variavel do ambiente
 fi
 
 cat <<EOF0 | gnuplot
 set encoding iso_8859_1
 #set encoding utf8
 set xlabel "Dimensao da matriz"; set ylabel ""
-set title "$TITLE"
+#set title "$TITLE"
+set notitle
 set xtics ("32" 32, "256" 256, "1024" 1024, "2048" 2048) #, "4k" 4096, "8k" 8192, "16k" 16384, "32k" 32768)
 # set nozero
 set logscale x
@@ -107,8 +108,11 @@ set key top left      # {top,mid,bottom} {left,center,right}
 set size 1.0,1.0
 plot \
          "${inp[0]}" us 1:2 tit "${lbl[0]}" w li lt 2 lw 1 lc rgb "red",\
-         "${inp[1]}" us 1:2 tit "${lbl[1]}" w li lt 3 lw 1 lc rgb "black"
+         "${inp[1]}" us 1:2 tit "${lbl[1]}" w li lt 3 lw 1 lc rgb "black",\
+         "${inp[2]}" us 1:2 tit "${lbl[2]}" w li lt 2 lw 1 lc rgb "green",\
+         "${inp[3]}" us 1:2 tit "${lbl[3]}" w li lt 3 lw 1 lc rgb "blue"
 EOF0
+mv $outFile ../img/
 
 # plot \
 #  "${inp[0]}-4-1.cr" us 7:8 tit "${lbl[0]}" w li lt 2 lw 2 lc rgb "red",\
