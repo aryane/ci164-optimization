@@ -81,7 +81,7 @@ if [ "x$XRANGE" = "x" ] ; then
 fi
 
 if [ "x$YRANGE" = "x" ] ; then
-  YRANGE="[6000:17000000]"        ## ELSE usa variavel do ambiente
+  YRANGE="[10:135]"        ## ELSE usa variavel do ambiente
 fi
 
 cat <<EOF0 | gnuplot
