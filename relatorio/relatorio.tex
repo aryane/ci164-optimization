@@ -25,27 +25,9 @@ right=1in]{geometry} \usepackage{graphicx} % para adicionar imagem
 
 \section{Introdução}
 
-Este trabalho foi feito por Aryane Ast dos Santos e Kevin Katzer, alunos de 
-Introdução à Computação Científica (CI164) do professor Daniel Weingaertner, 
-como continuação do primeiro trabalho entregue pelos mesmos alunos mais 
-cedo neste mesmo semestre.
-
-O trabalho consiste na otimização do programa entregue no trabalho anterior, 
-com relatório de cache miss, flops e acessos à memória para comparar o código 
-original do otimizado.
-
-Primeiramente, foi testado o programa com a ferramenta valgrind, para arrumar 
-possíveis erros de alocação, em seguida, com ajuda da ferramenta likwid para 
-saber o que acontecia dentro do código, começou-se o trabalho de documentar e 
-aplicar os conhecimentos de otimização adquiridos em sala de aula.
-
-Como base, usamos loop blocking para melhorar o desempenho da multiplicação 
-de matrizes e do cálculo do resíduo, que eram os maiores problemas de 
-desempenho do programa.
-
-Como os testes do likwid são sujeitos a programas paralelos em execução, 
-os resultados nunca são completamente precisos, mas dão uma ideia geral 
-de como o programa está se portando quando em execução.
+Este trabalho consiste na análise e otimização da implementação do método do
+gradiente apresentado anteriormente. Compara tempo de execução, uso de cache,
+memória e Flops entre versões com e sem otimização.
 
 \section{Verificação de uso de memória com Valgrind}\label{sec:Valgrind}
 
@@ -131,8 +113,8 @@ Number of sets:	512\\
 Cache line size:64\\
 Non Inclusive cache\\
 Shared among 4 threads\\
-\end{multicols}\caption{Saída resumida do likwid-topology}\label{fig:topologyOut}
-\end{tt}
+\end{multicols}
+\end{tt}\caption{Saída resumida do likwid-topology}\label{fig:topologyOut}
 \end{figure}
 
 Como pode-se notar na figura~\ref{fig:topologyOut}, nas servidoras do DInf, há
@@ -203,29 +185,30 @@ trechos de código referentes ao cálculo do fator lambda e do resíduo sobre
 memória, cache e operações em ponto flutuante de dupla precisão.
 
 Nos gráficos, nas figuras~\ref{fig:cacheMiss}, ~\ref{fig:usoMem} e
-~\ref{fig:flops}, podem ser observadas as taxas de cache miss, MBytes/s e
+~\ref{fig:flops}, podem ser observadas a taxa de faltas na cache, MBytes/s e
 MFlops/s, respectivamente, de uma iteração do cálculo de lambda, cálculo do
 resíduo e as versões de lambda e resíduo com compilação otimizada com -O3 em
 relação às dimensões da matriz.
 
 \begin{figure}[htb] \begin{center}
 \includegraphics[width=100mm]{img/cacheMiss.jpg} \end{center}
-\caption{Taxa de cache miss por dimensão da matriz}\label{fig:cacheMiss}
+\caption{Taxa de falta na cache por dimensão da matriz}\label{fig:cacheMiss}
 \end{figure}
 
 Faz sentido que o gráfico na figura~\ref{fig:cacheMiss} mostre que a taxa de
-cache miss aumentou na compilação otimizada, pois, como o compilador usa 
-vetorização na hora de fazer as otimizações, e a vetorização trabalha com várias 
-partes diferentes dos vetores e matrizes paralelamente, é mais difícil prever 
-qual parte da memória será usada em seguida, aumentando a taxa de cache miss.
+cache miss aumentou na compilação otimizada, pois, o compilador utiliza
+vetorização na hora de fazer as otimizações. A vetorização trabalha com vários
+trechos diferentes dos vetores e matrizes paralelamente, então fica mais difícil
+prever qual parte da memória será usada na sequência, o que aumenta a taxa de
+cache miss.
 
 \begin{figure}[htb] \begin{center}
 \includegraphics[width=100mm]{img/memUse.jpg} \end{center}
 \caption{Uso de memória em MBytes/s por dimensão da matriz}\label{fig:usoMem}
 \end{figure}
 
-De maneira análoga, a vazão de memória aumenta nas versões otimizadas, pois, 
-como acessamos várias partes da memória ao mesmo tempo, através da vetorização, 
+De maneira análoga, a vazão de memória aumenta nas versões otimizadas, pois,
+como acessamos várias partes da memória ao mesmo tempo, através da vetorização,
 acessamos a memória mais rapidamente.
 
 \begin{figure}[htb] \begin{center}
@@ -233,13 +216,13 @@ acessamos a memória mais rapidamente.
 \caption{MFlops/s por dimensão da matriz}\label{fig:flops}
 \end{figure}
 
-Também, o número de operações em ponto flutuante por segundo aumenta a medida que 
-o n aumenta pois há mais operações a serem feitas em menos tempo. Porém, quando 
-n alcança um certo ponto, o flops diminui, já que o processador só consegue fazer 
-um determinado número de operações em um dado tempo, e a partir daí as requisições 
-ao processador começam a ter que entrar em fila e a latência do processador passa 
-a ser um problema. A otimização não ajuda muito nesse aspecto, pois é um problema 
-de hardware.
+O número de operações em ponto flutuante por segundo também aumenta a medida que
+o n aumenta pois há mais operações a serem feitas em menos tempo. Porém, quando
+n alcança um certo ponto, o flops diminui, já que o processador só consegue
+fazer um determinado número de operações em um dado tempo, e a partir daí as
+requisições ao processador começam a ter que entrar em fila e a latência do
+processador passa a ser um problema. A otimização não ajuda muito nesse aspecto,
+pois é um problema de hardware.
 
 \subsection{Total de operações em ponto flutuante de dupla precisão}\label{sec:flopOp}
 
@@ -248,8 +231,8 @@ aninhados, e como as duas operações são uma soma e multiplicação juntas,
 conta-se apenas uma operação. Na função linear multVet, há duas operações de
 doubles dentro de apenas um laço. Como a função lambda utiliza duas vezes a
 função multVet e uma vez a função multMat, a funçao que descreve flops em função
-de n é dada por, aproximadamente, $f(n) = n^2 + 2n$, o que pode variar com a
-otimização do compilador.
+de n é dada por, aproximadamente, $f(n) = n^2 + 2n$. Esse valor pode variar com
+as otimizações introduzidas pelo compilador.
 
 Para obter esses valores, se utiliza o likwid-perfctr medindo o grupo FLOPS\_DP.
 Basta multiplicar o valor em MFlops/s pelo tempo em segundos e então por
@@ -264,7 +247,7 @@ amostragem de código em execução. Assumindo isso, os valores ficariam mais
 próximos aos reais a partir de uma amostragem maior de código, e no caso
 apresentado, a medição leva em conta apenas uma iteração do cálculo do lambda.
 
-A mesma coisa vale para o cálculo do resíduo, que tem complexidade quadrática.
+O mesmo vale para o cálculo do resíduo, que tem complexidade quadrática.
 
 \subsection{Utilização de memória}\label{sec:utilizacaoMemoria}
 
