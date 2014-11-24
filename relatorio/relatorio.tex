@@ -233,7 +233,13 @@ acessamos a memória mais rapidamente.
 \caption{MFlops/s por dimensão da matriz}\label{fig:flops}
 \end{figure}
 
-Também, o gráfico de flops não faz sentido, professor, passe pro próximo.
+Também, o número de operações em ponto flutuante por segundo aumenta a medida que 
+o n aumenta pois há mais operações a serem feitas em menos tempo. Porém, quando 
+n alcança um certo ponto, o flops diminui, já que o processador só consegue fazer 
+um determinado número de operações em um dado tempo, e a partir daí as requisições 
+ao processador começam a ter que entrar em fila e a latência do processador passa 
+a ser um problema. A otimização não ajuda muito nesse aspecto, pois é um problema 
+de hardware.
 
 \subsection{Total de operações em ponto flutuante de dupla precisão}\label{sec:flopOp}
 
