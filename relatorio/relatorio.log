@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.6)  23 NOV 2014 20:58
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.6)  23 NOV 2014 22:14
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -700,17 +700,17 @@ File: img/flops.jpg Graphic file (type jpg)
 Package pdftex.def Info: img/flops.jpg used on input line 206.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
  [5 <./img/cacheMiss.jpg>]
-Overfull \hbox (5.3205pt too wide) in paragraph at lines 223--226
+Overfull \hbox (5.3205pt too wide) in paragraph at lines 222--225
 []\T1/lmr/m/n/12 Para ob-ter os va-lo-res a par-tir do likwid, se usa likwid-pe
 rfctr me-dindo o grupo FLOPS_DP,
  []
 
 [6 <./img/memUse.jpg>] [7 <./img/flops.jpg>] (./relatorio.aux) ) 
 Here is how much of TeX's memory you used:
- 5019 strings out of 493307
- 67906 string characters out of 6139906
- 144307 words of memory out of 5000000
- 8366 multiletter control sequences out of 15000+600000
+ 5020 strings out of 493307
+ 67929 string characters out of 6139906
+ 144317 words of memory out of 5000000
+ 8367 multiletter control sequences out of 15000+600000
  51191 words of font info for 45 fonts, out of 8000000 for 9000
  957 hyphenation exceptions out of 8191
  38i,6n,32p,288b,268s stack positions out of 5000i,500n,10000p,200000b,80000s
@@ -723,7 +723,7 @@ lic/lm/lmmi8.pfb></usr/share/texmf/fonts/type1/public/lm/lmr12.pfb></usr/share/
 texmf/fonts/type1/public/lm/lmr17.pfb></usr/share/texmf/fonts/type1/public/lm/l
 mr8.pfb></usr/share/texmf/fonts/type1/public/lm/lmsy10.pfb></usr/share/texmf/fo
 nts/type1/public/lm/lmtl10.pfb>
-Output written on relatorio.pdf (7 pages, 303086 bytes).
+Output written on relatorio.pdf (7 pages, 304725 bytes).
 PDF statistics:
  70 PDF objects out of 1000 (max. 8388607)
  48 compressed objects within 1 object stream

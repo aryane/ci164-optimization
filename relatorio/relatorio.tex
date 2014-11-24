@@ -209,8 +209,7 @@ De maneira análoga, o uso de memória aumenta nas versões otimizadas, pois...
 
 Também...
 
-\subsection{Total de operação em ponto flutuante de dupla
-precisão}\label{sec:flopOp}
+\subsection{Total de operações em ponto flutuante de dupla precisão}\label{sec:flopOp}
 
 Na função multMat, há duas operações em ponto flutuante dentro de dois
 aninhados, e as duas operações são uma soma e multiplicação juntas, de forma que
@@ -234,16 +233,22 @@ apresentado, somente é levado em consideração uma iteração do cálculo do l
 
 A mesma coisa vale para o cálculo do resíduo, que tem complexidade quadrática.
 
-%\subsection{Utilização de memória}\label{sec:utilizacaoMemoria}
-%
-%No gráfico ref , vê-se que a uso de memória aumenta em função de
-%N. Na função lambda, é usada uma vez a função multMat e duas vezes a função
-%multVet, e sabendo que a função multMat tem $3n^2$ (dois laços com 3 acessos
-%dentro deles) acessos à memória e a função multVet tem 2n (um laço com dois
-%acessos) acessos à memória. Sendo assim, a função de acesso à memória é
-%aproximadamente f(n) = $3n^2$ + 4n, sem contar os imprevistos que podem vir a
-%occorrer durante a execução do programa, como acessos feitos por programas
-%paralelos.
-%
-%
+\subsection{Utilização de memória}\label{sec:utilizacaoMemoria}
+
+No gráfico~\ref{fig:usoMem} percebe-se que o uso de memória aumenta em função de N,
+sendo N a dimensão da matriz de entrada do gradSolver. Na função lambda, há
+acessos de memória nas funções de multiplicação de matrizes e na de vetores,
+multMat e multVet. Na multMat se tem dois laços aninhados com 3 acessos à
+memória dentro, e na função multVet há 2 acessos à memória e é invocada duas
+vezes. Dessa forma, a função lambda utiliza $f(n) = 3n^2 + 4n$ doubles de
+memória, lembrando que cada double possui 8 bytes.
+
+Na mesma linha de raciocínio, a quantidade de memória utilizada pela função de
+resíduo é dada por f(n) = ...
+
+Para verificar os resultados, o mesmo raciocínio feito para descobrir a
+quantidade de flops num trecho vale: multiplica-se MBytes/s pelo tempo de
+execução, ambas informações coletadas do likwid-perfctr aplicado ao grupo MEM, e
+então por $2^{20}$ para se obter a quantia em bytes utilizada pela memória.
+
 \end{document}

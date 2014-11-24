@@ -5,4 +5,5 @@
 \contentsline {section}{\numberline {4}Compara\IeC {\c c}\IeC {\~a}o de desempenho geral}{3}
 \contentsline {section}{\numberline {5}An\IeC {\'a}lise dos c\IeC {\'a}lculos do fator lambda e res\IeC {\'\i }duo}{5}
 \contentsline {subsection}{\numberline {5.1}Medidas de opera\IeC {\c c}\IeC {\~o}es em ponto flutuante, mem\IeC {\'o}ria utilizada e cache misses}{5}
-\contentsline {subsection}{\numberline {5.2}Total de opera\IeC {\c c}\IeC {\~a}o em ponto flutuante de dupla precis\IeC {\~a}o}{5}
+\contentsline {subsection}{\numberline {5.2}Total de opera\IeC {\c c}\IeC {\~o}es em ponto flutuante de dupla precis\IeC {\~a}o}{5}
+\contentsline {subsection}{\numberline {5.3}Utiliza\IeC {\c c}\IeC {\~a}o de mem\IeC {\'o}ria}{6}
