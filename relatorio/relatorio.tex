@@ -235,20 +235,20 @@ A mesma coisa vale para o cálculo do resíduo, que tem complexidade quadrática
 
 \subsection{Utilização de memória}\label{sec:utilizacaoMemoria}
 
-No gráfico~\ref{fig:usoMem} percebe-se que o uso de memória aumenta em função de N,
-sendo N a dimensão da matriz de entrada do gradSolver. Na função lambda, há
+No gráfico~\ref{fig:usoMem} percebe-se que o uso de memória aumenta em função de
+N, sendo N a dimensão da matriz de entrada do gradSolver. Na função lambda, há
 acessos de memória nas funções de multiplicação de matrizes e na de vetores,
-multMat e multVet. Na multMat se tem dois laços aninhados com 3 acessos à
-memória dentro, e na função multVet há 2 acessos à memória e é invocada duas
-vezes. Dessa forma, a função lambda utiliza $f(n) = 3n^2 + 4n$ doubles de
+multMat e multVet. Na multMat existem dois laços aninhados contendo 3 acessos à
+memória, e na função multVet há 2 acessos à memória e a mesma é invocada duas
+vezes. Juntando tudo isso, a função lambda utiliza $f(n) = 3n^2 + 4n$ doubles de
 memória, lembrando que cada double possui 8 bytes.
 
 Na mesma linha de raciocínio, a quantidade de memória utilizada pela função de
-resíduo é dada por f(n) = ...
+resíduo é dada por $f(n) = 5n^2$ doubles.
 
 Para verificar os resultados, o mesmo raciocínio feito para descobrir a
 quantidade de flops num trecho vale: multiplica-se MBytes/s pelo tempo de
 execução, ambas informações coletadas do likwid-perfctr aplicado ao grupo MEM, e
-então por $2^{20}$ para se obter a quantia em bytes utilizada pela memória.
+então por $2^{20}$ para se obter a quantia em bytes utilizada pela função.
 
 \end{document}
