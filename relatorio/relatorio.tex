@@ -237,25 +237,26 @@ Também, o gráfico de flops não faz sentido, professor, passe pro próximo.
 
 \subsection{Total de operações em ponto flutuante de dupla precisão}\label{sec:flopOp}
 
-Na função multMat, há duas operações em ponto flutuante dentro de dois
-aninhados, e as duas operações são uma soma e multiplicação juntas, de forma que
-é possível que se conte apenas uma operação. Na função multVet, há duas
-operações de doubles dentro de apenas um laço. Como a função lambda usa duas
-vezes a função multVet e uma vez a função multMat, flops em função de n é,
-aproximadamente, f(n) = $n^2 + 2n$, o que pode variar com a otimização do
-compilador.
+Na função multMat, há duas operações em ponto flutuante dentro de dois laços
+aninhados, e como as duas operações são uma soma e multiplicação juntas,
+conta-se apenas uma operação. Na função linear multVet, há duas operações de
+doubles dentro de apenas um laço. Como a função lambda utiliza duas vezes a
+função multVet e uma vez a função multMat, a funçao que descreve flops em função
+de n é dada por, aproximadamente, $f(n) = n^2 + 2n$, o que pode variar com a
+otimização do compilador.
 
-Para obter os valores a partir do likwid, se usa likwid-perfctr medindo o grupo
-FLOPS\_DP, pega-se o valor em MFlops/s, multiplica-se pelo tempo em segundos, no
-caso o Runtime unhalted, e por $2^{20}$ e aí se obtém o total absoluto de flops.
+Para obter esses valores, se utiliza o likwid-perfctr medindo o grupo FLOPS\_DP.
+Basta multiplicar o valor em MFlops/s pelo tempo em segundos e então por
+$2^{20}$. Assim se obtém o total absoluto de flops utilizados por trecho de
+código.
 
 Não foi possível fazer um casamento da complexidade em função da dimensão da
 matriz com a conta que se faz com os valores do likwid, pois saída do
 likwid-perfctr para FLOPS\_DP sofre muitas variações. Aí seria necessário ler a
 documentação da ferramenta  para descobrir se o programa pega os valores por
-amostragem de código em execução. Se isso for assumido, os valores ficam mais
-próximos aos reais a partir de uma amostragem de código maior, e no caso
-apresentado, somente é levado em consideração uma iteração do cálculo do lambda.
+amostragem de código em execução. Assumindo isso, os valores ficariam mais
+próximos aos reais a partir de uma amostragem maior de código, e no caso
+apresentado, a medição leva em conta apenas uma iteração do cálculo do lambda.
 
 A mesma coisa vale para o cálculo do resíduo, que tem complexidade quadrática.
 
