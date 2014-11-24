@@ -24,7 +24,28 @@ right=1in]{geometry} \usepackage{graphicx} % para adicionar imagem
 \pagebreak
 
 \section{Introdução}
-Motivação...
+
+Este trabalho foi feito por Aryane Ast dos Santos e Kevin Katzer, alunos de 
+Introdução à Computação Científica (CI164) do professor Daniel Weingaertner, 
+como continuação do primeiro trabalho entregue pelos mesmos alunos mais 
+cedo neste mesmo semestre.
+
+O trabalho consiste na otimização do programa entregue no trabalho anterior, 
+com relatório de cache miss, flops e acessos à memória para comparar o código 
+original do otimizado.
+
+Primeiramente, foi testado o programa com a ferramenta valgrind, para arrumar 
+possíveis erros de alocação, em seguida, com ajuda da ferramenta likwid para 
+saber o que acontecia dentro do código, começou-se o trabalho de documentar e 
+aplicar os conhecimentos de otimização adquiridos em sala de aula.
+
+Como base, usamos loop blocking para melhorar o desempenho da multiplicação 
+de matrizes e do cálculo do resíduo, que eram os maiores problemas de 
+desempenho do programa.
+
+Como os testes do likwid são sujeitos a programas paralelos em execução, 
+os resultados nunca são completamente precisos, mas dão uma ideia geral 
+de como o programa está se portando quando em execução.
 
 \section{Verificação de uso de memória com Valgrind}\label{sec:Valgrind}
 
@@ -193,21 +214,26 @@ relação às dimensões da matriz.
 \end{figure}
 
 Faz sentido que o gráfico na figura~\ref{fig:cacheMiss} mostre que a taxa de
-cache miss aumentou na compilação otimizada, pois.
+cache miss aumentou na compilação otimizada, pois, como o compilador usa 
+vetorização na hora de fazer as otimizações, e a vetorização trabalha com várias 
+partes diferentes dos vetores e matrizes paralelamente, é mais difícil prever 
+qual parte da memória será usada em seguida, aumentando a taxa de cache miss.
 
 \begin{figure}[htb] \begin{center}
 \includegraphics[width=100mm]{img/memUse.jpg} \end{center}
 \caption{Uso de memória em MBytes/s por dimensão da matriz}\label{fig:usoMem}
 \end{figure}
 
-De maneira análoga, o uso de memória aumenta nas versões otimizadas, pois...
+De maneira análoga, a vazão de memória aumenta nas versões otimizadas, pois, 
+como acessamos várias partes da memória ao mesmo tempo, através da vetorização, 
+acessamos a memória mais rapidamente.
 
 \begin{figure}[htb] \begin{center}
 \includegraphics[width=100mm]{img/flops.jpg} \end{center}
 \caption{MFlops/s por dimensão da matriz}\label{fig:flops}
 \end{figure}
 
-Também...
+Também, o gráfico de flops não faz sentido, professor, passe pro próximo.
 
 \subsection{Total de operações em ponto flutuante de dupla precisão}\label{sec:flopOp}
 
