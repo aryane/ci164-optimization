@@ -89,6 +89,7 @@ set notitle
 set xtics ("32" 32, "256" 256, "1024" 1024, "2048" 2048) #, "4k" 4096, "8k" 8192, "16k" 16384, "32k" 32768)
 # set nozero
 set logscale x
+set logscale y
 #set xtics nomirror ("16" 16, "32" 32, "64" 64, "128" 128, "256" 256)
 set ytics nomirror ; set tics in ; set nogrid
 set xrange $XRANGE
