@@ -142,17 +142,19 @@ disponível, e sabendo que o programa aloca $n^2 + 3n$ doubles, temos que $64(n^
 
 \section{Comparação de desempenho geral}\label{sec:desempenhoGeral}
 
-Para a execução dos testes de desempenho, foi utilizada a ferramenta likwid-pin,
-que afixa a execução do programa à um core da máquina em uso dedicado. Mas como
-as caches continuam sendo compartilhadas, o que é possível notar na figura
-(likwid-topology -g), analisar o desempenho de diferentes execuções se torna um
-problema, pois é necessário minimizar o uso de cache pelos outros programas. A
-solução encontrada foi executar o gradSolver em single user mode.
+Para a execução dos testes de desempenho, foi utilizada a ferramenta
+likwid-pin, que afixa a execução do programa à um core da máquina em uso
+dedicado. Mas como a cache L3 continua sendo compartilhada, analisar o
+desempenho de diferentes execuções se torna um problema, pois é necessário
+minimizar o uso da cache pelos outros programas.  Uma solução encontrada foi
+executar o gradSolver em mode single user, porém não foi possível utilizar a
+solução com os testes apresentados. Vale notar que no período de testes não
+haviam outros usuários logados na máquina.
 
 No gráfico~\ref{fig:execucao}, são mostrados os tempos de execução em segundos,
 que foram obtidos com a função timestamp, para matrizes de dimensões 32, 256,
 1024 e 2048. Na escala horizontal do gráfico, as diferenças entre as potências
-de 2 e $2^n+1$ não aparecem claramente. O eixo das abcissas está em escala
+de 2 e $2^n+1$ não aparecem claramente. Os eixos do gráfico estão em escala
 logarítmica.
 
 \begin{figure}[htb] \begin{center}
@@ -165,7 +167,8 @@ potência de 2 seriam ligeiramente melhores, por causa de um melhor uso da
 associatividade da cache. Porém, isso não pode ser verificado nas execuções para
 os tamanhos de cache exibidos acima. Uma melhor visualização dos tempos de
 execução pode ser observado na tabela~\ref{fig:tabelaExecucoes}, onde a primeira
-coluna são as dimensões da matriz e a segunda os tempos de execução em segundos.
+coluna são as dimensões da matriz e a segunda os tempos de execução de 50
+iterações do método do gradiente em segundos.
 
 \begin{figure}[htb]
 \begin{tt}\noindent
