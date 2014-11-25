@@ -247,7 +247,7 @@ aninhados, e como as duas operações são uma soma e multiplicação juntas,
 conta-se apenas uma operação. Na função linear multVet, há duas operações de
 doubles dentro de apenas um laço. Como a função lambda utiliza duas vezes a
 função multVet e uma vez a função multMat, a funçao que descreve flops em função
-de n é dada por, aproximadamente, $f(n) = n^2 + 2n$. Esse valor pode variar com
+de n é dada por, aproximadamente, $f(n) = 2n^2 + 4n$. Esse valor pode variar com
 as otimizações introduzidas pelo compilador.
 
 Para obter esses valores, se utiliza o likwid-perfctr medindo o grupo FLOPS\_DP.
@@ -263,7 +263,8 @@ amostragem de código em execução. Assumindo isso, os valores ficariam mais
 próximos aos reais a partir de uma amostragem maior de código, e no caso
 apresentado, a medição leva em conta apenas uma iteração do cálculo do lambda.
 
-O mesmo vale para o cálculo do resíduo, que tem complexidade quadrática.
+O mesmo vale para o cálculo do resíduo, que é descrito pela função $f(n) =
+2n^2$.
 
 \subsection{Utilização de memória}\label{sec:utilizacaoMemoria}
 
