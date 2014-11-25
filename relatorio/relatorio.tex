@@ -229,6 +229,17 @@ requisições ao processador começam a ter que entrar em fila e a latência do
 processador passa a ser um problema. A otimização não ajuda muito nesse aspecto,
 pois é um problema de hardware.
 
+Apesar da taxa de falta da cache piorar e o uso de memória aumentar, o
+desempenho em segundos melhora consideralvelmente, como mostra a
+figura~\ref{fig:compExec}.
+
+\begin{figure}[htb] \begin{center}
+\includegraphics[width=100mm]{img/compExec.jpg} \end{center}
+\caption{Desempenho em segundos compilação normal X compilação otimizada}\label{fig:compExec}
+\end{figure}
+
+\clearpage
+
 \subsection{Total de operações em ponto flutuante de dupla precisão}\label{sec:flopOp}
 
 Na função multMat, há duas operações em ponto flutuante dentro de dois laços
