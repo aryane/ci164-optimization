@@ -33,8 +33,8 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
     *timeError += timestamp();
     prev_norm = residualNorm(r, n);
 
-    double relErr = e + 1.0;
-    while ((fabs(relErr) > e) && (i++<it)){
+    double absErr = e + 1.0;
+    while ((fabs(absErr) > e) && (i++<it)){
         *timeGrad -= timestamp();
         calcGrad(A, x, r, n);
         *timeGrad += timestamp();
@@ -42,7 +42,7 @@ double gradSolver(double *A, double *b, double *x, int n, double e,
         residue(A, b, x, r, n);
         *timeError += timestamp();
         norm = residualNorm(r, n);
-        relErr = norm - prev_norm;
+        absErr = norm - prev_norm;
         prev_norm = norm;
     }
 
