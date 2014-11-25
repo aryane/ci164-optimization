@@ -81,7 +81,7 @@ if [ "x$XRANGE" = "x" ] ; then
 fi
 
 if [ "x$YRANGE" = "x" ] ; then
-  YRANGE="[0.002:0.018]"        ## ELSE usa variavel do ambiente
+  YRANGE="[30000:4000000]"        ## ELSE usa variavel do ambiente
 fi
 
 cat <<EOF0 | gnuplot
@@ -90,14 +90,15 @@ set encoding iso_8859_1
 set xlabel "Dimensao da matriz"; set ylabel ""
 #set title "$TITLE"
 set notitle
-set xtics ("32" 32, "256" 256, "1024" 1024, "2048" 2048)
+set xtics ("256" 256, "257" 257,"1024" 1024, "1025" 1025, "2048" 2048, "2049" 2049)
 # set nozero
+set logscale y
 set logscale x
 #set xtics nomirror ("16" 16, "32" 32, "64" 64, "128" 128, "256" 256)
 set ytics nomirror ; set tics in ; set nogrid
 set xrange $XRANGE
 set yrange $YRANGE
-set ylabel "Proporção de cache miss"
+set ylabel "Cache misses"
 set lmargin $lmargin
 set border 3 lw 0  ; set ytics nomirror
 set pointsize $ptSZ
@@ -121,4 +122,3 @@ mv $outFile ../img/
 # "${inp[4]}-4-1.cr" us 7:8 tit "${lbl[4]}" w li lt 5,\
 # "${inp[5]}-4-1.cr" us 7:8 tit "${lbl[5]}" w li lt 4,\
 # "${inp[6]}-4-1.cr" us 7:8 tit "${lbl[6]}" w li lt 9
-
