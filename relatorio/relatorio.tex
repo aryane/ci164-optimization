@@ -209,7 +209,48 @@ e Resíduo.
 \caption{Taxa de falta na cache na função de resíduo por dimensão da matriz}\label{fig:cacheResidue}
 \end{figure}
 
-Explicação cache... %FIXME
+Como o código não está otimizado, não há muito o que o compilador fazer no 
+quesito de melhorar o código. Portanto os gráficos ficam praticamente 
+idênticos, como podemos ver em~\ref{fig:tabCache}.
+
+\begin{figure}[ht]\footnotesize
+\begin{tt}\noindent
+\begin{multicols}{2}
+    Cache de Lambda\\
+    256     60970\\
+    257     33234\\
+    1024    819554\\
+    1025    610040\\
+    2048    3.30425e+06\\
+    2049    3.30189e+06\\
+\\
+    Cache de Lambda com -O3\\
+    256     60653\\
+    257     33123\\
+    1024    839928\\
+    1025    607744\\
+    2048    3.23875e+06\\
+    2049    4.45634e+06\\
+\end{multicols}
+\begin{multicols}{2}
+    Cache de Residue\\
+    256     61195\\
+    257     33087\\
+    1024    814462\\
+    1025    606444\\
+    2048    3.20236e+06\\
+    2049    3.32741e+06\\
+\\
+    Cache de Residue com -O3\\
+    256     61099\\
+    257     32143\\
+    1024    834560\\
+    1025    606675\\
+    2048    3.36222e+06\\
+    2049    4.46308e+06\\
+\end{multicols}
+\end{tt}\caption{Tabela de Cache com e sem -O3}\label{fig:tabCache}
+\end{figure}
 
 \clearpage
 
