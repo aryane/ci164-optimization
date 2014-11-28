@@ -74,20 +74,18 @@ void calcGrad(double *A, double *x, double *r, int n){
  * @param n Dimensão da matriz.
  */
 double lambda(double *A, double *r, int n){
-    double *prodMat = (double *)malloc(n*sizeof(double));
+    double aux;
     double mult1 = 0.0;
     double mult2 = 0.0;
 
     for (int i=0; i<n; ++i){
         mult1 += r[i]*r[i];
-        prodMat[i] = 0.0;
+        aux = 0.0;
         for (int j=0; j<n; ++j){
-            prodMat[i] += r[j]*A[i*n+j];
+            aux += r[j]*A[i*n+j];
         }
-        mult2 += r[i]*prodMat[i];
+        mult2 += r[i]*aux;
     }
-
-    free(prodMat);
 
     return mult1/mult2;
 }
