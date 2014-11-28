@@ -107,10 +107,8 @@ set output "$outFile"
 set key top left      # {top,mid,bottom} {left,center,right}
 set size 1.0,1.0
 plot \
-         "${inp[0]}" us 1:2 tit "${lbl[0]}" w li lt 2 lw 1 lc rgb "red",\
-         "${inp[1]}" us 1:2 tit "${lbl[1]}" w li lt 3 lw 1 lc rgb "black",\
-         "${inp[2]}" us 1:2 tit "${lbl[2]}" w li lt 2 lw 1 lc rgb "green",\
-         "${inp[3]}" us 1:2 tit "${lbl[3]}" w li lt 3 lw 1 lc rgb "blue"
+         "${inp[0]}" us 1:2 tit "${lbl[0]}" w li lt 2 lw 1 lc rgb "black",\
+         "${inp[1]}" us 1:2 tit "${lbl[1]}" w li lt 3 lw 1 lc rgb "red"
 EOF0
 mv $outFile ../img/
 
