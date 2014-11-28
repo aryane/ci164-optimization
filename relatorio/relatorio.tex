@@ -261,24 +261,18 @@ ajuda muito nesse aspecto, pois é uma limitação de hardware.
 
 Como melhoria do código foi realizado um merge dos laços da multiplicação de
 matrizes, e duas multiplicações de vetores, de forma que onde antes se tinha
-$2n^2 + 4n$ flops dividos em vários laços para o cálculo da função lambda, agora
-as operações de vetores são realizadas dentro do laço da multiplicação de
-matrizes, de forma a aproveitar melhor o tempo do processador. Isso resulta numa
-melhor vazão de MFlops/s, como pode ser observar no gráfico%~\ref{flopsOtm}, que
-exibe a vazão de MFlops/s para uma iteração de lambda.
+$2n^2 + 4n$ flops dividos em vários laços para o cálculo da função lambda,
+agora as operações de vetores são realizadas dentro do laço da multiplicação de
+matrizes, de forma a aproveitar melhor o tempo do processador, o que resulta
+numa melhor vazão de MFlops/s.
 
-%\begin{figure}[htb] \begin{center}
-%\includegraphics[width=100mm]{img/flopsOtm.jpg} \end{center} \caption{MFlops/s
-%com otimização e sem por dimensão de matriz}\label{fig:flopsOtm} \end{figure}
-
-E o gráfico~\ref{fig:compExec} traça uma comparação das compilações normal, com
+O gráfico~\ref{fig:compExec} traça uma comparação das compilações normal, com
 otimização -O3 e com a melhoria do código para 50 iterações.
 
 \begin{figure}[htb] \begin{center}
 \includegraphics[width=100mm]{img/compExec.jpg} \end{center}
-\caption{Desempenho em segundos compilações normal, com O3 e com código
-otimizado}\label{fig:compExec}
-\end{figure}
+\caption{Desempenho em segundos para compilações normal, com -O3 e com código
+otimizado}\label{fig:compExec} \end{figure}
 
 A linha verde representa código com melhoria na função lambda, a vermelha
 representa código normal e a linha preta código compilado com a flag de
