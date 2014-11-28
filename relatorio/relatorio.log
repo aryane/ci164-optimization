@@ -1,11 +1,12 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.6)  28 NOV 2014 02:24
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.5.29)  28 NOV 2014 13:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
 **relatorio.tex
 (./relatorio.tex
 LaTeX2e <2011/06/27>
-Babel <3.9f> and hyphenation patterns for 78 languages loaded.
+Babel <v3.8m> and hyphenation patterns for english, dumylang, nohyphenation, lo
+aded.
 (/usr/share/texlive/texmf-dist/tex/latex/base/article.cls
 Document Class: article 2007/10/19 v1.4h Standard LaTeX document class
 (/usr/share/texlive/texmf-dist/tex/latex/base/size12.clo
@@ -24,20 +25,25 @@ File: size12.clo 2007/10/19 v1.4h Standard LaTeX file (size option)
 \bibindent=\dimen102
 )
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.sty
-Package: babel 2013/05/16 v3.9f The Babel package
+Package: babel 2008/07/08 v3.8m The Babel package
 
-(/usr/share/texlive/texmf-dist/tex/generic/babel-portuges/portuges.ldf
+(/usr/share/texlive/texmf-dist/tex/generic/babel/portuges.ldf
 Language: portuges 2008/03/18 v1.2q Portuguese support from the babel system
 
 (/usr/share/texlive/texmf-dist/tex/generic/babel/babel.def
-File: babel.def 2013/05/16 v3.9f Babel common definitions
+File: babel.def 2008/07/08 v3.8m Babel common definitions
 \babel@savecnt=\count87
 \U@D=\dimen103
 )
+
+Package babel Warning: No hyphenation patterns were loaded for
+(babel)                the language `Portuguese'
+(babel)                I will use the patterns loaded for \language=0 instead.
+
+\l@portuges = a dialect from \language0
 \l@brazil = a dialect from \language\l@portuges 
 Package babel Info: Making " an active character on input line 145.
-))
-(/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
+)) (/usr/share/texlive/texmf-dist/tex/latex/base/inputenc.sty
 Package: inputenc 2008/03/30 v1.1d Input encoding file
 \inpenc@prehook=\toks14
 \inpenc@posthook=\toks15
@@ -370,18 +376,18 @@ Package: ltxcmds 2011/11/09 v1.22 LaTeX kernel commands for general use (HO)
 \lst@maxwidth=\dimen117
 
 (/usr/share/texlive/texmf-dist/tex/latex/listings/lstmisc.sty
-File: lstmisc.sty 2013/07/10 1.5 (Carsten Heinz)
+File: lstmisc.sty 2007/02/22 1.4 (Carsten Heinz)
 \c@lstnumber=\count98
 \lst@skipnumbers=\count99
 \lst@framebox=\box27
 )
 (/usr/share/texlive/texmf-dist/tex/latex/listings/listings.cfg
-File: listings.cfg 2013/06/27 1.5pre1 listings configuration
+File: listings.cfg 2007/02/22 1.4 listings configuration
 ))
-Package: listings 2013/07/10 1.5 (Carsten Heinz)
+Package: listings 2007/02/22 1.4 (Carsten Heinz)
 
 (/usr/share/texlive/texmf-dist/tex/latex/amsmath/amsmath.sty
-Package: amsmath 2013/01/14 v2.14 AMS math features
+Package: amsmath 2000/07/18 v2.13 AMS math features
 \@mathmargin=\skip43
 
 For additional information on amsmath, use the `?' option.
@@ -401,20 +407,20 @@ Package: amsbsy 1999/11/29 v1.2d
 Package: amsopn 1999/12/14 v2.01 operator names
 )
 \inf@bad=\count100
-LaTeX Info: Redefining \frac on input line 210.
+LaTeX Info: Redefining \frac on input line 211.
 \uproot@=\count101
 \leftroot@=\count102
-LaTeX Info: Redefining \overline on input line 306.
+LaTeX Info: Redefining \overline on input line 307.
 \classnum@=\count103
 \DOTSCASE@=\count104
-LaTeX Info: Redefining \ldots on input line 378.
-LaTeX Info: Redefining \dots on input line 381.
-LaTeX Info: Redefining \cdots on input line 466.
+LaTeX Info: Redefining \ldots on input line 379.
+LaTeX Info: Redefining \dots on input line 382.
+LaTeX Info: Redefining \cdots on input line 467.
 \Mathstrutbox@=\box28
 \strutbox@=\box29
 \big@size=\dimen120
-LaTeX Font Info:    Redeclaring font encoding OML on input line 566.
-LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OML on input line 567.
+LaTeX Font Info:    Redeclaring font encoding OMS on input line 568.
 \macc@depth=\count105
 \c@MaxMatrixCols=\count106
 \dotsspace@=\muskip10
@@ -435,8 +441,8 @@ LaTeX Font Info:    Redeclaring font encoding OMS on input line 567.
 \multlinegap=\skip44
 \multlinetaggap=\skip45
 \mathdisplay@stack=\toks23
-LaTeX Info: Redefining \[ on input line 2665.
-LaTeX Info: Redefining \] on input line 2666.
+LaTeX Info: Redefining \[ on input line 2666.
+LaTeX Info: Redefining \] on input line 2667.
 )
 (/usr/share/texlive/texmf-dist/tex/latex/tools/indentfirst.sty
 Package: indentfirst 1995/11/23 v1.03 Indent first paragraph (DPC)
@@ -642,41 +648,41 @@ LaTeX Font Info:    External font `lmex10' loaded for size
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 47.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 45.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 79--93
+Underfull \hbox (badness 10000) in paragraph at lines 77--91
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--93
+Underfull \hbox (badness 10000) in paragraph at lines 77--91
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--93
+Underfull \hbox (badness 10000) in paragraph at lines 77--91
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--121
+Underfull \hbox (badness 10000) in paragraph at lines 93--119
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--121
+Underfull \hbox (badness 10000) in paragraph at lines 93--119
 
  []
 
 [2] [3] <img/execucoes.jpg, id=20, 481.8pt x 361.35pt>
 File: img/execucoes.jpg Graphic file (type jpg)
  <use img/execucoes.jpg>
-Package pdftex.def Info: img/execucoes.jpg used on input line 161.
+Package pdftex.def Info: img/execucoes.jpg used on input line 159.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--183
+Underfull \hbox (badness 10000) in paragraph at lines 172--181
 
  []
 
@@ -684,41 +690,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--183
 File: img/cacheMissLambda.jpg Graphic file (type jpg)
 
 <use img/cacheMissLambda.jpg>
-Package pdftex.def Info: img/cacheMissLambda.jpg used on input line 203.
+Package pdftex.def Info: img/cacheMissLambda.jpg used on input line 201.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
 
 <img/cacheMissResidue.jpg, id=26, 481.8pt x 361.35pt>
 File: img/cacheMissResidue.jpg Graphic file (type jpg)
 
 <use img/cacheMissResidue.jpg>
-Package pdftex.def Info: img/cacheMissResidue.jpg used on input line 208.
+Package pdftex.def Info: img/cacheMissResidue.jpg used on input line 206.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
- [5 <./img/cacheMissLambda.jpg>] [6 <./img/cacheMissResidue.jpg>] <img/memLambd
-a.jpg, id=33, 481.8pt x 361.35pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--249
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--249
+
+ []
+
+[5 <./img/cacheMissLambda.jpg>] [6 <./img/cacheMissResidue.jpg>]
+<img/memLambda.jpg, id=33, 481.8pt x 361.35pt>
 File: img/memLambda.jpg Graphic file (type jpg)
-
-<use img/memLambda.jpg>
-Package pdftex.def Info: img/memLambda.jpg used on input line 221.
+ <use img/memLambda.jpg>
+Package pdftex.def Info: img/memLambda.jpg used on input line 260.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
- <img/memResidue.jpg, id=34, 481.8pt x 361.35pt>
+
+<img/memResidue.jpg, id=34, 481.8pt x 361.35pt>
 File: img/memResidue.jpg Graphic file (type jpg)
-
-<use img/memResidue.jpg>
-Package pdftex.def Info: img/memResidue.jpg used on input line 226.
+ <use img/memResidue.jpg>
+Package pdftex.def Info: img/memResidue.jpg used on input line 265.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
- [7
+
+[7
 
  <./img/memLambda.jpg>] [8 <./img/memResidue.jpg>]
 <img/flopsLambda.jpg, id=42, 481.8pt x 361.35pt>
 File: img/flopsLambda.jpg Graphic file (type jpg)
  <use img/flopsLambda.jpg>
-Package pdftex.def Info: img/flopsLambda.jpg used on input line 241.
+Package pdftex.def Info: img/flopsLambda.jpg used on input line 280.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
 
 <img/flopsResidue.jpg, id=43, 481.8pt x 361.35pt>
 File: img/flopsResidue.jpg Graphic file (type jpg)
  <use img/flopsResidue.jpg>
-Package pdftex.def Info: img/flopsResidue.jpg used on input line 246.
+Package pdftex.def Info: img/flopsResidue.jpg used on input line 285.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
 
 [9
@@ -727,7 +753,7 @@ Package pdftex.def Info: img/flopsResidue.jpg used on input line 246.
 <img/compExec.jpg, id=50, 481.8pt x 361.35pt>
 File: img/compExec.jpg Graphic file (type jpg)
  <use img/compExec.jpg>
-Package pdftex.def Info: img/compExec.jpg used on input line 278.
+Package pdftex.def Info: img/compExec.jpg used on input line 312.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
  [11
 
@@ -735,13 +761,13 @@ Package pdftex.def Info: img/compExec.jpg used on input line 278.
 
 ] (./relatorio.aux) ) 
 Here is how much of TeX's memory you used:
- 5045 strings out of 493307
- 68545 string characters out of 6139906
- 145366 words of memory out of 5000000
- 8388 multiletter control sequences out of 15000+600000
- 51191 words of font info for 45 fonts, out of 8000000 for 9000
- 957 hyphenation exceptions out of 8191
- 38i,6n,32p,288b,268s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 4972 strings out of 495059
+ 67431 string characters out of 3182030
+ 137584 words of memory out of 3000000
+ 8044 multiletter control sequences out of 15000+200000
+ 51191 words of font info for 45 fonts, out of 3000000 for 9000
+ 14 hyphenation exceptions out of 8191
+ 38i,6n,32p,288b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
 {/usr/share/texmf/fonts/enc/dvips/lm/lm-mathit.enc}{/usr/s
 hare/texmf/fonts/enc/dvips/lm/lm-mathsy.enc}{/usr/share/texmf/fonts/enc/dvips/l
 m/lm-rm.enc}{/usr/share/texmf/fonts/enc/dvips/lm/lm-ec.enc}</usr/share/texmf/fo
@@ -750,7 +776,7 @@ fb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr
 /share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtl10.pfb>
-Output written on relatorio.pdf (12 pages, 393564 bytes).
+Output written on relatorio.pdf (12 pages, 398770 bytes).
 PDF statistics:
  89 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
