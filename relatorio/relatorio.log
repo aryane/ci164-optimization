@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.5.29)  28 NOV 2014 13:32
+This is pdfTeX, Version 3.1415926-2.4-1.40.13 (TeX Live 2012/Debian) (format=pdflatex 2014.5.29)  28 NOV 2014 13:36
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -648,41 +648,41 @@ LaTeX Font Info:    External font `lmex10' loaded for size
  [1
 
 {/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-LaTeX Font Info:    Try loading font information for T1+lmtt on input line 47.
+LaTeX Font Info:    Try loading font information for T1+lmtt on input line 45.
  (/usr/share/texmf/tex/latex/lm/t1lmtt.fd
 File: t1lmtt.fd 2009/10/30 v1.6 Font defs for Latin Modern
 )
-Underfull \hbox (badness 10000) in paragraph at lines 79--93
+Underfull \hbox (badness 10000) in paragraph at lines 77--91
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--93
+Underfull \hbox (badness 10000) in paragraph at lines 77--91
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 79--93
+Underfull \hbox (badness 10000) in paragraph at lines 77--91
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--121
+Underfull \hbox (badness 10000) in paragraph at lines 93--119
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 95--121
+Underfull \hbox (badness 10000) in paragraph at lines 93--119
 
  []
 
 [2] [3] <img/execucoes.jpg, id=20, 481.8pt x 361.35pt>
 File: img/execucoes.jpg Graphic file (type jpg)
  <use img/execucoes.jpg>
-Package pdftex.def Info: img/execucoes.jpg used on input line 161.
+Package pdftex.def Info: img/execucoes.jpg used on input line 159.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
 
-Underfull \hbox (badness 10000) in paragraph at lines 174--183
+Underfull \hbox (badness 10000) in paragraph at lines 172--181
 
  []
 
@@ -690,41 +690,61 @@ Underfull \hbox (badness 10000) in paragraph at lines 174--183
 File: img/cacheMissLambda.jpg Graphic file (type jpg)
 
 <use img/cacheMissLambda.jpg>
-Package pdftex.def Info: img/cacheMissLambda.jpg used on input line 203.
+Package pdftex.def Info: img/cacheMissLambda.jpg used on input line 201.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
 
 <img/cacheMissResidue.jpg, id=26, 481.8pt x 361.35pt>
 File: img/cacheMissResidue.jpg Graphic file (type jpg)
 
 <use img/cacheMissResidue.jpg>
-Package pdftex.def Info: img/cacheMissResidue.jpg used on input line 208.
+Package pdftex.def Info: img/cacheMissResidue.jpg used on input line 206.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
- [5 <./img/cacheMissLambda.jpg>] [6 <./img/cacheMissResidue.jpg>] <img/memLambd
-a.jpg, id=33, 481.8pt x 361.35pt>
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 217--232
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--249
+
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 234--249
+
+ []
+
+[5 <./img/cacheMissLambda.jpg>] [6 <./img/cacheMissResidue.jpg>]
+<img/memLambda.jpg, id=33, 481.8pt x 361.35pt>
 File: img/memLambda.jpg Graphic file (type jpg)
-
-<use img/memLambda.jpg>
-Package pdftex.def Info: img/memLambda.jpg used on input line 221.
+ <use img/memLambda.jpg>
+Package pdftex.def Info: img/memLambda.jpg used on input line 260.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
- <img/memResidue.jpg, id=34, 481.8pt x 361.35pt>
+
+<img/memResidue.jpg, id=34, 481.8pt x 361.35pt>
 File: img/memResidue.jpg Graphic file (type jpg)
-
-<use img/memResidue.jpg>
-Package pdftex.def Info: img/memResidue.jpg used on input line 226.
+ <use img/memResidue.jpg>
+Package pdftex.def Info: img/memResidue.jpg used on input line 265.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
- [7
+
+[7
 
  <./img/memLambda.jpg>] [8 <./img/memResidue.jpg>]
 <img/flopsLambda.jpg, id=42, 481.8pt x 361.35pt>
 File: img/flopsLambda.jpg Graphic file (type jpg)
  <use img/flopsLambda.jpg>
-Package pdftex.def Info: img/flopsLambda.jpg used on input line 241.
+Package pdftex.def Info: img/flopsLambda.jpg used on input line 280.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
 
 <img/flopsResidue.jpg, id=43, 481.8pt x 361.35pt>
 File: img/flopsResidue.jpg Graphic file (type jpg)
  <use img/flopsResidue.jpg>
-Package pdftex.def Info: img/flopsResidue.jpg used on input line 246.
+Package pdftex.def Info: img/flopsResidue.jpg used on input line 285.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
 
 [9
@@ -733,7 +753,7 @@ Package pdftex.def Info: img/flopsResidue.jpg used on input line 246.
 <img/compExec.jpg, id=50, 481.8pt x 361.35pt>
 File: img/compExec.jpg Graphic file (type jpg)
  <use img/compExec.jpg>
-Package pdftex.def Info: img/compExec.jpg used on input line 273.
+Package pdftex.def Info: img/compExec.jpg used on input line 312.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
  [11
 
@@ -741,10 +761,10 @@ Package pdftex.def Info: img/compExec.jpg used on input line 273.
 
 ] (./relatorio.aux) ) 
 Here is how much of TeX's memory you used:
- 4971 strings out of 495059
- 67417 string characters out of 3182030
- 137575 words of memory out of 3000000
- 8043 multiletter control sequences out of 15000+200000
+ 4972 strings out of 495059
+ 67431 string characters out of 3182030
+ 137584 words of memory out of 3000000
+ 8044 multiletter control sequences out of 15000+200000
  51191 words of font info for 45 fonts, out of 3000000 for 9000
  14 hyphenation exceptions out of 8191
  38i,6n,32p,288b,268s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -756,7 +776,7 @@ fb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr
 /share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtl10.pfb>
-Output written on relatorio.pdf (12 pages, 398332 bytes).
+Output written on relatorio.pdf (12 pages, 398770 bytes).
 PDF statistics:
  89 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
