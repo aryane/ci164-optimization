@@ -192,54 +192,91 @@ Utilizando a ferramenta likwid-perfctr, foi possível obter informações nos
 trechos de código referentes ao cálculo do fator lambda e do resíduo sobre
 memória, cache e operações em ponto flutuante de dupla precisão.
 
-Nos gráficos, nas figuras~\ref{fig:cacheMiss}, ~\ref{fig:usoMem} e
-~\ref{fig:flops}, podem ser observadas a taxa de faltas na cache, MBytes/s e
-MFlops/s, respectivamente, de uma iteração do cálculo de lambda, cálculo do
-resíduo e as versões de lambda e resíduo com compilação otimizada com -O3 em
-relação às dimensões da matriz.
+Nos gráficos a seguir, as linhas pretas representam a compilação normal e a
+vermelha a compilação otimizada com -O3.
 
-\begin{figure}[htb] \begin{center}
-\includegraphics[width=100mm]{img/cacheMiss.jpg} \end{center}
-\caption{Taxa de falta na cache por dimensão da matriz}\label{fig:cacheMiss}
+Nos gráficos nas figuras~\ref{fig:cacheLambda} e ~\ref{fig:cacheResidue} podem
+ser observadas o total de faltas na cache para uma iteração das funções Lambda
+e Resíduo.
+
+\begin{figure} \begin{center}
+\includegraphics[width=100mm]{img/cacheMissLambda.jpg} \end{center}
+\caption{Taxa de falta na cache na função lambda por dimensão da matriz}\label{fig:cacheLambda}
 \end{figure}
 
-Faz sentido que o gráfico na figura~\ref{fig:cacheMiss} mostre que a taxa de
-cache miss aumentou na compilação otimizada, pois, o compilador utiliza
-vetorização na hora de fazer as otimizações. A vetorização trabalha com vários
-trechos diferentes dos vetores e matrizes paralelamente, então fica mais difícil
-prever qual parte da memória será usada na sequência, o que aumenta a taxa de
-cache miss.
-
-\begin{figure}[htb] \begin{center}
-\includegraphics[width=100mm]{img/memUse.jpg} \end{center}
-\caption{Uso de memória em MBytes/s por dimensão da matriz}\label{fig:usoMem}
+\begin{figure} \begin{center}
+\includegraphics[width=100mm]{img/cacheMissResidue.jpg} \end{center}
+\caption{Taxa de falta na cache na função de resíduo por dimensão da matriz}\label{fig:cacheResidue}
 \end{figure}
 
-De maneira análoga, a vazão de memória aumenta nas versões otimizadas, pois,
-como acessamos várias partes da memória ao mesmo tempo, através da vetorização,
-acessamos a memória mais rapidamente.
+Explicação cache... %FIXME
+
+\clearpage
+
+Já nas figuras~\ref{fig:memLambda} e ~\ref{fig:memResidue}, estão descritas
+a quantidade de MBytes/s por dimensão da matriz utilizadas em uma iteração das
+funções de cálculo de lambda e resíduo.
 
 \begin{figure}[htb] \begin{center}
-\includegraphics[width=100mm]{img/flops.jpg} \end{center}
-\caption{MFlops/s por dimensão da matriz}\label{fig:flops}
+\includegraphics[width=100mm]{img/memLambda.jpg} \end{center}
+\caption{Uso de memória em MBytes/s por dimensão da matriz}\label{fig:memLambda}
 \end{figure}
 
-O número de operações em ponto flutuante por segundo também aumenta a medida que
-o n aumenta pois há mais operações a serem feitas em menos tempo. Porém, quando
-n alcança um certo ponto, o flops diminui, já que o processador só consegue
-fazer um determinado número de operações em um dado tempo, e a partir daí as
-requisições ao processador começam a ter que entrar em fila e a latência do
-processador passa a ser um problema. A otimização não ajuda muito nesse aspecto,
-pois é um problema de hardware.
+\begin{figure}[htb] \begin{center}
+\includegraphics[width=100mm]{img/memResidue.jpg} \end{center}
+\caption{Uso de memória em MBytes/s por dimensão da matriz}\label{fig:memResidue}
+\end{figure}
 
-Apesar da taxa de falta da cache piorar e o uso de memória aumentar, o
-desempenho em segundos melhora consideralvelmente, como mostra a
-figura~\ref{fig:compExec}.
+A vazão de memória aumenta nas versões otimizadas, pois como várias partes da
+memória são acessadas ao mesmo tempo através da vetorização, as operações em
+ponto flutuante são efetuadas mais rapidamente.
+
+\clearpage
+
+E por fim, nas figuras~\ref{fig:flopsLambda} e ~\ref{fig:flopsResidue}
+encontram-se a quantidade de MFlops/s em relação às dimensões da matriz para
+uma iteração dos cálculos de lambda e resíduo.
+
+\begin{figure}[htb] \begin{center}
+\includegraphics[width=100mm]{img/flopsLambda.jpg} \end{center}
+\caption{MFlops/s por dimensão da matriz no cálculo de lambda}\label{fig:flopsLambda}
+\end{figure}
+
+\begin{figure}[htb] \begin{center}
+\includegraphics[width=100mm]{img/flopsResidue.jpg} \end{center}
+\caption{MFlops/s por dimensão da matriz no cálculo do resíduo}\label{fig:flopsResidue}
+\end{figure}
+
+O número de operações em ponto flutuante por segundo também aumenta a medida
+que o n aumenta pois há mais operações a serem feitas em menos tempo. Porém,
+quando n alcança um certo ponto, o número de flops diminui, já que o
+processador só consegue fazer um determinado número de operações em um dado
+tempo, e a partir daí as requisições ao processador começam a ter que entrar em
+fila e a latência do processador passa a ser um problema. A otimização não
+ajuda muito nesse aspecto, pois é uma limitação de hardware.
+
+\clearpage
+
+\subsection{Melhoria no código}\label{sec:melhoria}
+
+Como melhoria do código foi realizado um merge dos laços da multiplicação de
+matrizes, e duas multiplicações de vetores, de forma que onde antes se tinha
+$2n^2 + 4n$ flops agora se tem $...$, como é possível verificar no gráfico
+abaixo.
+
+%graf %FIXME
+
+Apesar da quantidade de cache miss não diminuir consideravelmente com compilação -O3, o
+desempenho em segundos melhora significativamente, como mostra a
+figura~\ref{fig:compExec}, que traça uma comparação das compilações normal, com
+otimização -O3 e com a melhoria do código para x iterações.
 
 \begin{figure}[htb] \begin{center}
 \includegraphics[width=100mm]{img/compExec.jpg} \end{center}
 \caption{Desempenho em segundos compilação normal X compilação otimizada}\label{fig:compExec}
 \end{figure}
+
+Linha de tal cor representa tal.
 
 \clearpage
 
@@ -271,13 +308,14 @@ O mesmo vale para o cálculo do resíduo, que é descrito pela função $f(n) =
 
 \subsection{Utilização de memória}\label{sec:utilizacaoMemoria}
 
-No gráfico~\ref{fig:usoMem} percebe-se que o uso de memória aumenta em função de
-N, sendo N a dimensão da matriz de entrada do gradSolver. Na função lambda, há
-acessos de memória nas funções de multiplicação de matrizes e na de vetores,
-multMat e multVet. Na multMat existem dois laços aninhados contendo 3 acessos à
-memória, e na função multVet há 2 acessos à memória e a mesma é invocada duas
-vezes. Juntando tudo isso, a função lambda utiliza $f(n) = 3n^2 + 4n$ doubles de
-memória, lembrando que cada double possui 8 bytes.
+Nos gráficos~\ref{fig:memLambda} e ~\ref{fig:memResidue} percebe-se que o uso de
+memória aumenta em função de N, sendo N a dimensão da matriz de entrada do
+gradSolver. Na função lambda, há acessos de memória nas funções de multiplicação
+de matrizes e na de vetores, multMat e multVet. Na multMat existem dois laços
+aninhados contendo 3 acessos à memória, e na função multVet há 2 acessos à
+memória e a mesma é invocada duas vezes. Juntando tudo isso, a função lambda
+utiliza $f(n) = 3n^2 + 4n$ doubles de memória, lembrando que cada double possui
+8 bytes.
 
 Na mesma linha de raciocínio, a quantidade de memória utilizada pela função de
 resíduo é dada por $f(n) = 5n^2$ doubles.
