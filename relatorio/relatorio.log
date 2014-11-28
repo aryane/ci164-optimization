@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.6)  28 NOV 2014 00:03
+This is pdfTeX, Version 3.1415926-2.5-1.40.14 (TeX Live 2013/Debian) (format=pdflatex 2014.6.6)  28 NOV 2014 02:24
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -727,7 +727,7 @@ Package pdftex.def Info: img/flopsResidue.jpg used on input line 246.
 <img/compExec.jpg, id=50, 481.8pt x 361.35pt>
 File: img/compExec.jpg Graphic file (type jpg)
  <use img/compExec.jpg>
-Package pdftex.def Info: img/compExec.jpg used on input line 275.
+Package pdftex.def Info: img/compExec.jpg used on input line 278.
 (pdftex.def)             Requested size: 284.52756pt x 213.39867pt.
  [11
 
@@ -750,7 +750,7 @@ fb></usr/share/texmf/fonts/type1/public/lm/lmmi8.pfb></usr/share/texmf/fonts/ty
 pe1/public/lm/lmr12.pfb></usr/share/texmf/fonts/type1/public/lm/lmr17.pfb></usr
 /share/texmf/fonts/type1/public/lm/lmr8.pfb></usr/share/texmf/fonts/type1/publi
 c/lm/lmsy10.pfb></usr/share/texmf/fonts/type1/public/lm/lmtl10.pfb>
-Output written on relatorio.pdf (12 pages, 393663 bytes).
+Output written on relatorio.pdf (12 pages, 393564 bytes).
 PDF statistics:
  89 PDF objects out of 1000 (max. 8388607)
  58 compressed objects within 1 object stream
