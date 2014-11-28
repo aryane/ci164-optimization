@@ -56,15 +56,25 @@ int main(int argc, char **argv) {
     }
 
     r = (double *)malloc(n*sizeof(double));
-    aux = (double *)malloc(n*sizeof(double));
+    double *prodMat = (double *)malloc(n*sizeof(double));
     memset(r, 0, n*sizeof(double));
 
     likwid_markerInit();
     likwid_markerStartRegion("Compute");
 
-    multMat(A, r, aux, n);
-    iaux = 1/multVet(r, aux, n);
-    iaux *= multVet(r, r, n);
+    double mult1 = 0.0;
+    double mult2 = 0.0;
+
+    for (int i=0; i<n; ++i){
+        mult1 += r[i]*r[i];
+        prodMat[i] = 0.0;
+        for (int j=0; j<n; ++j){
+            prodMat[i] += r[j]*A[i*n+j];
+        }
+        mult2 += r[i]*prodMat[i];
+    }
+
+    free(prodMat);
 
     likwid_markerStopRegion("Compute");
     likwid_markerClose();
